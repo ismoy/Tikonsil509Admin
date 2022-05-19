@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activate">Activate</string>
+    <string name="desactivate">Deseabled</string>
+    <string name="update">Update</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_onlyoneandtwo_eole">Por favor solo ingrese 1 o 2</string>
+    <string name="notificationList">notificationList</string>
+    <string name="topuppricehaiti">Topup Price Haiti</string>
+    <string name="moncashpricehaiti">MonCash Price Haiti</string>
+    <string name="topuppricecuba">Topup Price Cuba</string>
+    <string name="topuppricemexico">Topup Price Mexico</string>
+    <string name="topuppricepanama">Topup Price Panama</string>
+    <string name="topuppricerd">Republica Dominicana</string>
+    <string name="topuppricebrasil">Topup Price Brasil</string>
+    <string name="topuppricechile">Topup Price Chile</string>
+    <string name="topuppriceusa">Topup Price USA</string>
+    <string name="country_price">Country Price</string>
+    <string name="activo">Activo</string>
+    <string name="online">Online</string>
+    <string name="registered_users">Total Users</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="lapoulapricehaiti">LaPouLa Price Haiti</string>
+    <string name="natcashpricehaiti">NatCash Price Haiti</string>
+    <string name="natcash">NATCASH</string>
+    <string name="lapoula">LAPOULA</string>
+</resources>

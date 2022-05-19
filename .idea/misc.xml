@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable-ldpi/button_login_rounded.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/badge_baground.xml" value="0.1" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/bg_delete_rounded.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/bg_editrounded.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/button_login_rounded_cancel.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/card_bg_list_notification.xml" value="0.178" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/thumb.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/track.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/user_active.xml" value="0.217" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/activity_details_notification.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/activity_home.xml" value="0.1574074074074074" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/activity_login.xml" value="0.1787037037037037" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/costum_notification_layout.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/custom_dialog_ldetails_notification.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/custom_edit_dialog.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/dialog_loading.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_country_price.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_details_notification.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_history_sales.xml" value="0.1787037037037037" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_home.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_list_notification.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_login.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_profile.xml" value="0.3592592592592593" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_register.xml" value="0.3641025641025641" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_register_users.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_register_uses.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/fragment_registered_users.xml" value="0.3592592592592593" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_form_history_invoices.xml" value="0.1398148148148148" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_image.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_info.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_last_sale.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_last_sale_shimmer_eferct.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_lastname.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_list_notification.xml" value="0.2849740932642487" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_logout.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/item_registered_users_content.xml" value="0.25" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/layout_home_content.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/layout_home_content_relative_top_shimmer_effect.xml" value="0.184375" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/nav_drawer.xml" value="0.1787037037037037" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/layout/register_user_content.xml" value="0.3592592592592593" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/menu/menu.xml" value="0.1574074074074074" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/menu/menu_navegation_drawer.xml" value="0.1574074074074074" />
+        <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/menu/notification.xml" value="0.1787037037037037" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

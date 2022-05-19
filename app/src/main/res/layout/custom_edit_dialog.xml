@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorboton"
+            android:text="@string/update"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="30dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layoutfirstname"
+                    android:text="@string/Firstname"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutfirstname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutfirstname" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutfirstname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="60dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/firstnamedialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layoutlastname"
+                    android:text="@string/LastName"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutlastname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutlastname" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutlastname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="30dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutfirstname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutfirstname"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutfirstname">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lastnamedialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layoutpasswordname"
+                    android:text="@string/password"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutpasswordname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutpasswordname" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutpasswordname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="30dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutlastname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutlastname"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutlastname">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passworddialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layoutphonename"
+                    android:text="@string/telefono"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutphonename"
+                    app:layout_constraintStart_toStartOf="@+id/layoutphonename" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutphonename"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="30dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutpasswordname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutpasswordname"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutpasswordname">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phonedialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layoutrolename"
+                    android:text="@string/roledialog"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutrolename"
+                    app:layout_constraintStart_toStartOf="@+id/layoutrolename" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutrolename"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="30dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutphonename"
+                    app:layout_constraintStart_toStartOf="@+id/layoutphonename"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutphonename">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/roledialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layouttopupname"
+                    android:text="@string/topup"
+                    app:layout_constraintBottom_toTopOf="@+id/layouttopupname"
+                    app:layout_constraintStart_toStartOf="@+id/layouttopupname" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layouttopupname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="30dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutrolename"
+                    app:layout_constraintStart_toStartOf="@+id/layoutrolename"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutrolename">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/topupdialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layoutmoncashname"
+                    android:text="@string/moncash"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutmoncashname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutmoncashname" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutmoncashname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="30dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="@+id/layouttopupname"
+                    app:layout_constraintStart_toStartOf="@+id/layouttopupname"
+                    app:layout_constraintTop_toBottomOf="@+id/layouttopupname">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/moncashdialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layoutnatcashname"
+                    android:text="@string/natcash"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutnatcashname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutnatcashname" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutnatcashname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="30dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutmoncashname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutmoncashname"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutmoncashname">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/natcashdialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/layoutlapoulaname"
+                    android:text="@string/lapoula"
+                    app:layout_constraintBottom_toTopOf="@+id/layoutlapoulaname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutlapoulaname" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutlapoulaname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="84dp"
+                    android:layout_marginTop="30dp"
+                    app:helperTextTextColor="@color/design_default_color_error"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutnatcashname"
+                    app:layout_constraintStart_toStartOf="@+id/layoutnatcashname"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutnatcashname">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lapouladialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:id="@+id/btn_edit_dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_login_rounded"
+                    android:text="@string/update"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/btn_edit_dialog_cancel"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutlapoulaname" />
+
+                <Button
+                    android:id="@+id/btn_edit_dialog_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_login_rounded_cancel"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:theme="@style/BtuttonCancelTheme"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_edit_dialog"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutlapoulaname" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/btn_edit_dialog_cancel"
+                    android:layout_marginTop="30dp"
+                    android:visibility="invisible"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+</RelativeLayout>

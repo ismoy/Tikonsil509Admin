@@ -1,0 +1,145 @@
+<resources>
+    <string name="app_name">Tikonsil509Admin</string>
+    <string name="username">Username</string>
+    <string name="Firstname">FirstName</string>
+    <string name="LastName">LastName</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeatpassword">Confirm Password</string>
+    <string name="forgetpassword">Forget Password?</string>
+    <string name="Newhere">New here ? Create an account here!</string>
+    <string name="singup">Sign up</string>
+    <string name="singin">Log in</string>
+    <string name="start">start</string>
+    <string name="close">close</string>
+    <string name="Requiredfield">Required field</string>
+    <string name="Onlyallowletters">Only allow letters</string>
+    <string name="Onlyallowlettersandnumber">Only allow letters and Number</string>
+    <string name="Nocaracteresspecial">Does not allow special characters</string>
+    <string name="Pleaseenteryourfullname">Please enter your full name</string>
+    <string name="Passwordsdonotmatch">Passwords do not match</string>
+    <string name="Namecorto">Username must be at least 4 characters long</string>
+    <!-- message verify -->
+    <string name="Email_is_required.">Email is required.</string>
+    <string name="invalid_email">invalid email</string>
+    <string name="Password_is_required.">Password is required.</string>
+    <string name="The_password_must_be_at_least_6_characters_long" translatable="false">The password must be at least 6 characters long</string>
+    <string name="Loading...">Loading...</string>
+    <string name="User_was_successfully_logged_in">User was successfully logged in</string>
+    <string name="Pleaseenteryournumberphonecorrect">Please enter your cell phone number along with the country area code</string>
+    <string name="Youraccounthasbeencreatedsuccessfully.Checkyouremailtoactivatetheaccount">Your account has been created successfully. Check your email to activate the account</string>
+    <string name="onFailureWecouldnotverifyyouremail">onFailure: We could not verify your email</string>
+    <string name="Error" translatable="false">Error !</string>
+    <string name="Account_not_verified.Please_check_youre_mail">Account not verified. Please check your email</string>
+    <string name="Problemwhenloggingincheckyouremailandpassword">Problem when logging in check your email and password</string>
+    <string name="SelectaCountry">Select a country</string>
+    <string name="haiti" translatable="false">HAITI</string>
+    <string name="dominican" translatable="false">DOMINICAN REPUBLIC</string>
+    <string name="panama" translatable="false">PANAMA</string>
+    <string name="cuba" translatable="false">CUBA</string>
+    <string name="brasil" translatable="false">BRAZIL</string>
+    <string name="mexico" translatable="false">MEXICO</string>
+    <string name="Selectatypeofrecharge">Select a type of recharge</string>
+    <string name="topup" translatable="false">TOPUP</string>
+    <string name="moncash" translatable="false">MONCASH</string>
+    <string name="NúmeroTeléfonodeTopUparecargar">TopUp phone number to recharge</string>
+    <string name="date">Date</string>
+    <string name="total" translatable="false">Monto</string>
+    <string name="subtotal" translatable="false">SubTotal</string>
+    <string name="description">Description</string>
+    <string name="SendReload">Send recharge</string>
+    <string name="Wellcome">Welcome:</string>
+    <string name="Wellcometotikonsil">Welcome to Tikonsil509</string>
+    <string name="Registeredusers">Registered users</string>
+    <string name="Invoices">Invoices Clients</string>
+    <string name="Invoices2">Invoices Masters</string>
+    <string name="ismoy" translatable="false">Ismoy</string>
+    <string name="ismoy90" translatable="false">ismoy90</string>
+    <string name="belizaire" translatable="false">Belizaire</string>
+    <string name="telefono">Phone</string>
+    <string name="_56973030630" translatable="false">+56973030630</string>
+    <string name="admin">Admin</string>
+    <string name="role">Role</string>
+    <string name="roledialog">Role</string>
+
+    <string name="logout">Logout</string>
+    <string name="tikonsil509_com_cl" translatable="false">tikonsil509.com@.cl</string>
+    <string name="secure" translatable="false">*******</string>
+    <string name="estado" translatable="false">Estado</string>
+    <string name="action" translatable="false">Actions</string>
+    <string name="sale">Total Sales</string>
+    <string name="lastersale">Latest 10 sales</string>
+    <string name="cannotreload">Cannot reload to that country at the moment</string>
+    <string name="agent">Agent</string>
+    <string name="master">Master</string>
+    <string name="pleasewait">Please Wait..</string>
+    <string name="sendrequest">Sending Request ...</string>
+    <string name="thanks">Thanks for your purchase</string>
+    <string name="nomoney">You do not have enough balance to make this purchase</string>
+    <string name="yourbalance">Your balance is</string>
+    <string name="theservice">The service</string>
+    <string name="only"> is available only for haiti</string>
+    <string name="defaultpassword">***********</string>
+    <string name="numberdefault">937463640</string>
+    <string name="defaulemail">jhondoe@gmail.com</string>
+    <string name="default_last_name">Doe</string>
+    <string name="default_first_name">Jhon</string>
+    <string name="erroremptyfield">Por favor, ingresa el dato solicitado</string>
+    <string name="error_firsname_onlyletter">Por favor ingrese un Nombre válido (Ejp:Jhon)</string>
+    <string name="error_lastname_onlyletter">Por favor ingrese un Apellido válido (Ejp:Doe)</string>
+    <string name="error_email_invalid">Por favor, ingresa un correo electrónico válido</string>
+    <string name="error_longitud_number">Por favor ingresa un numero teléfono válido (EJP: 954545454)</string>
+    <string name="error_longitudepassword">La contraseña debe tener al menos 8 caracteres</string>
+    <string name="error_no_coecidence_password">Las contraseñas no coinciden. Inténtalo de nuevo.</string>
+    <string name="succescreateaccount">Su cuenta ha sido creada con éxito. Revise su correo electrónico para activar la cuenta</string>
+    <string name="existemail">Ya tienes una cuenta en nuestro registro con ese correo</string>
+    <string name="noconnetion_internet">No tienes conexión a internet. Por favor, intenta más tarde</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="history">Historial de Ventas</string>
+    <string name="sendreload_other_agent">Vender a Otros Agentes</string>
+    <string name="register_reference">Registrar Referidos</string>
+    <string name="policy_privacy">Política de privacidad</string>
+    <string name="default_monto">5000</string>
+    <string name="success">Success</string>
+    <string name="next">Next</string>
+    <string name="error">Error!</string>
+    <string name="no_hay_ventas_registrada">No Hay ventas registrada</string>
+    <string name="request_recharge">Request Recharge</string>
+    <string name="title_methode_pay">Seleccione el metodo de pago para su recarga de saldo</string>
+    <string name="account_number">Numero de cuenta copiado</string>
+    <string name="info_transferencia">si vas hacer transferencia bancaria por favor enviarnos el comprobante via email t43031313@gmail.com o whatsapp +56932723367</string>
+    <string name="default_notification_channel_id">fcm_default_channel</string>
+    <string name="token_api_server_default">AAAAj812wm0:APA91bGryDQHRsHZQQqKNkA6gdpeeEBl1w7prud_cFILDbgDwZoEkpYlO8GjkKfZKzzL_GyBxsjKGkjD4BDZ6Zwrfm793aRL-d3EYwTzvLkXeojUQemb5b0XsehoI5oFGYy5yzvY7hw-</string>
+    <string name="cambiar_precios_paises">Cambiar Precios de los Paises</string>
+    <string name="unlimited">Unlimited</string>
+    <string name="activate">Activate</string>
+    <string name="desactivate">Deseabled</string>
+    <string name="update">Update</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_onlyoneandtwo_eole">Por favor solo ingrese 1 o 2</string>
+    <string name="notificationList">Notification List</string>
+    <string name="topuppricehaiti">Topup Price Haiti</string>
+    <string name="moncashpricehaiti">MonCash Price Haiti</string>
+    <string name="topuppricecuba">Topup Price Cuba</string>
+    <string name="topuppricemexico">Topup Price Mexico</string>
+    <string name="topuppricepanama">Topup Price Panama</string>
+    <string name="topuppricerd">Republica Dominicana</string>
+    <string name="topuppricebrasil">Topup Price Brasil</string>
+    <string name="topuppricechile">Topup Price Chile</string>
+    <string name="topuppriceusa">Topup Price USA</string>
+    <string name="country_price">Country Price</string>
+    <string name="activo">Activo</string>
+    <string name="online">Online</string>
+    <string name="registered_users">Total Users</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="lapoulapricehaiti">LaPouLa Price Haiti</string>
+    <string name="natcashpricehaiti">NatCash Price Haiti</string>
+    <string name="natcash">NATCASH</string>
+    <string name="lapoula">LAPOULA</string>
+</resources>
+

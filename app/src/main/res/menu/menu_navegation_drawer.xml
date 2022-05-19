@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_RegisterUsers"
+        android:title="@string/Registeredusers"
+        android:icon="@drawable/ic_baseline_send_24" />
+
+
+    <item
+        android:id="@+id/nav_historysales"
+        android:title="@string/Invoices"
+        android:icon="@drawable/ic_baseline_history_24"/>
+    <item
+        android:id="@+id/nav_change_price_country"
+        android:title="@string/cambiar_precios_paises"
+        android:icon="@drawable/ic_baseline_person_add_alt_24"/>
+    <item
+        android:id="@+id/nav_policyAndPrivacyFragment"
+        android:title="@string/policy_privacy"
+        android:icon="@drawable/ic_baseline_security_24"/>
+</menu>
