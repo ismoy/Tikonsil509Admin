@@ -3,6 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/drawable-ldpi/bg_spinner_country.xml" value="0.2115" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/drawable-ldpi/login_etd.xml" value="0.2115" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/drawable/bg_spinner_.xml" value="0.2115" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/layout/custom_dialog_ldetails_notification.xml" value="0.18229166666666666" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/layout/custom_edit_dialog.xml" value="0.3490740740740741" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/layout/fragment_cambiar_price_bonus.xml" value="0.3697916666666667" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/layout/fragment_change_price_bonus.xml" value="0.3490740740740741" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/layout/fragment_login.xml" value="0.3697916666666667" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/layout/item_bonus_price.xml" value="0.1" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/layout/item_registered_users_content.xml" value="0.3697916666666667" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/layout/itempricebonus.xml" value="0.36875" />
+        <entry key="..\:/Tikonsil509Admin/app/src/main/res/menu/menu_navegation_drawer.xml" value="0.3697916666666667" />
+        <entry key="..\:/Users/beliz/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.3697916666666667" />
         <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable-ldpi/button_login_rounded.xml" value="0.217" />
         <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/badge_baground.xml" value="0.1" />
         <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/drawable/bg_delete_rounded.xml" value="0.217" />

@@ -11,7 +11,7 @@ import com.tikonsil.tikonsil509.domain.model.Sales
 class LastSalesProvider {
  var mDatabase:DatabaseReference?= FirebaseDatabase.getInstance().reference.child("Sales")
  suspend fun getLastSales(): Query? {
-  return mDatabase?.ref?.limitToLast(11)
+  return mDatabase?.limitToLast(11)
  }
 
 }

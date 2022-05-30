@@ -25,4 +25,10 @@
     <string name="natcashpricehaiti">NatCash Price Haiti</string>
     <string name="natcash">NATCASH</string>
     <string name="lapoula">LAPOULA</string>
+    <string name="cambiar_numero_de_cuenta">Cambiar numero de  cuenta</string>
+    <string name="cambiar_bonus_register">"Cambiar price bonus "</string>
+    <string name="bonustopuphaiti">BONUS TOPUP  HAITI</string>
+    <string name="bonusmoncashhaiti">BONUS MONCASH HAITI</string>
+    <string name="bonusnatcashhaiti">BONUS NATCASH HAITI</string>
+    <string name="bonuslapoulahaiti">BONUS LAPOULA HAITI</string>
 </resources>

@@ -53,6 +53,7 @@ class HomeActivity : BaseActivity<UserViewModel, ActivityHomeBinding>(),
             R.id.nav_RegisterUsers -> navController.navigate(R.id.action_homeFragment_to_registerUsersFragment)
             R.id.nav_historysales->navController.navigate(R.id.action_homeFragment_to_historySalesFragment)
             R.id.nav_change_price_country->navController.navigate(R.id.action_homeFragment_to_countryPriceFragment)
+            R.id.nav_change_bonus_register->navController.navigate(R.id.action_homeFragment_to_changePriceBonusFragment)
 
         }
         drawerLayout.closeDrawer(GravityCompat.START)

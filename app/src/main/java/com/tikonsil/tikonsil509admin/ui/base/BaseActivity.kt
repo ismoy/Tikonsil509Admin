@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.navigation.NavigationView
-import com.tikonsil.tikonsil509.data.remote.provider.AuthProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.domain.repository.login.LoginRepository
 import com.tikonsil.tikonsil509admin.presentation.home.UserViewModel

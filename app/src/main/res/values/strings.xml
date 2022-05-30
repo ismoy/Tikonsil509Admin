@@ -1,5 +1,39 @@
 <resources>
     <string name="app_name">Tikonsil509Admin</string>
+    <string-array name="bonus_list">
+        <item>TOPUP HAITI</item>
+        <item>MONCASH HAITI</item>
+        <item>NATCASH HAITI</item>
+        <item>LAPOULA HAITI</item>
+        <item>TOPUP CHILE</item>
+        <item>MONCASH CHILE</item>
+        <item>NATCASH CHILE</item>
+        <item>LAPOULA CHILE</item>
+        <item>TOPUP CUBA</item>
+        <item>MONCASH CUBA</item>
+        <item>NATCASH CUBA</item>
+        <item>LAPOULA CUBA</item>
+        <item>TOPUP REPUBLICAN DOMINIK</item>
+        <item>MONCASH REPUBLICAN DOMINIK</item>
+        <item>NATCASH REPUBLICAN DOMINIK</item>
+        <item>LAPOULA REPUBLICAN DOMINIK</item>
+        <item>TOPUP PANAMA</item>
+        <item>MONCASH PANAMA</item>
+        <item>NATCASH PANAMA</item>
+        <item>LAPOULA PANAMA</item>
+        <item>TOPUP MEXICO</item>
+        <item>MONCASH MEXICO</item>
+        <item>NATCASH MEXICO</item>
+        <item>LAPOULA MEXICO</item>
+        <item>TOPUP BRASIL</item>
+        <item>MONCASH BRASIL</item>
+        <item>NATCASH BRASIL</item>
+        <item>LAPOULA BRASIL</item>
+        <item>TOPUP OTHER COUNTRY</item>
+        <item>MONCASH OTHER COUNTRY</item>
+        <item>NATCASH OTHER COUNTRY</item>
+        <item>LAPOULA OTHER COUNTRY</item>
+    </string-array>
     <string name="username">Username</string>
     <string name="Firstname">FirstName</string>
     <string name="LastName">LastName</string>
@@ -141,5 +175,13 @@
     <string name="natcashpricehaiti">NatCash Price Haiti</string>
     <string name="natcash">NATCASH</string>
     <string name="lapoula">LAPOULA</string>
+    <string name="cambiar_numero_de_cuenta">Cambiar numero de  cuenta</string>
+    <string name="cambiar_bonus_register">"Cambiar price bonus "</string>
+    <string name="update_bonus">UPDATE BONUS COUNTRY</string>
+    <string name="select_the_bonus_to_exchange">Select the bonus to exchange</string>
+    <string name="phone">Phone</string>
+    <string name="changebonuprice">Change Price Bonus</string>
+
+
 </resources>
 

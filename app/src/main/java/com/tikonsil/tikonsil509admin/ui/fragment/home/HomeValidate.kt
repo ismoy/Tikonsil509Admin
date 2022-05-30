@@ -2,7 +2,6 @@ package com.tikonsil.tikonsil509admin.ui.fragment.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.RelativeLayout
 import android.widget.ScrollView
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.tikonsil.tikonsil509.data.remote.provider.AuthProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509.data.remote.provider.TokenProvider
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.LastSaleAdapter

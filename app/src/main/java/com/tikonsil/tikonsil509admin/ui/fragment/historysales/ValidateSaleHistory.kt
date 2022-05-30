@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.tikonsil.tikonsil509.data.remote.provider.AuthProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.HistorySalesAdapter
 import com.tikonsil.tikonsil509admin.domain.repository.historysales.HistorySalesRepository

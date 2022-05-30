@@ -7,6 +7,7 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.Window
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.tikonsil.tikonsil509admin.R
+import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.data.remote.provider.UpdateUserProvider
 import com.tikonsil.tikonsil509admin.databinding.ItemRegisteredUsersContentBinding
 import com.tikonsil.tikonsil509admin.domain.model.RegisteredUser
@@ -244,15 +246,15 @@ class RegistreredUserAdapter(val context: Context) :
 
         private fun deleteUser(context: Context, usersdata: RegisteredUser) {
             val builder = AlertDialog.Builder(context)
+            val authprovider by lazy { AuthProvider() }
             builder.setTitle("Estas seguro que quieres Eliminar esa cuenta?")
             builder.setMessage("Al eliminar la cuanta el usuario ya no tendra acceso a su cuenta y no puede recuperarla")
             builder.setPositiveButton("Delete") { dialog, which ->
-                val user = Firebase.auth.currentUser
-                user?.delete()?.addOnCompleteListener {
+                authprovider.deleteAccount()?.addOnCompleteListener {
                     if (it.isSuccessful){
                         Toast.makeText(context, "Cuenta eliminada", Toast.LENGTH_SHORT).show()
                     }else{
-                        Toast.makeText(context, "No se puede eliminar la cuenta", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "No se puede eliminar la cuenta solo puedes desactivar el usuario ", Toast.LENGTH_LONG).show()
                     }
                 }
 
