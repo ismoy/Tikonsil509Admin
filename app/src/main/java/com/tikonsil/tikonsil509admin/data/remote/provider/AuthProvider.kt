@@ -1,4 +1,4 @@
-package com.tikonsil.tikonsil509.data.remote.provider
+package com.tikonsil.tikonsil509admin.data.remote.provider
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -19,6 +19,9 @@ class AuthProvider {
  }
  fun logout() {
   auth.signOut()
+ }
+ fun deleteAccount(): Task<Void>? {
+  return  auth.currentUser?.delete()
  }
 
  fun lenguaje() {

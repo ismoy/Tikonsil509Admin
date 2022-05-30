@@ -25,7 +25,8 @@ class ListNotificationRepository {
                         val idUser = ds.child("iduser").value.toString()
                         val key = ds.key.toString()
                         val date =ds.child("date").value.toString()
-                        val listnotification = NotificationList(title,message,idUser,key,date)
+                        val phone =ds.child("phone").value.toString()
+                        val listnotification = NotificationList(title,message,idUser,key,date,phone)
                         listnotificationdata.add(listnotification)
                     }
                     mutableLiveDat.value =listnotificationdata

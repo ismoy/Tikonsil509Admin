@@ -1,6 +1,7 @@
 package com.tikonsil.tikonsil509admin.data.remote.api
 
 import com.tikonsil.tikonsil509.domain.model.*
+import com.tikonsil.tikonsil509admin.domain.model.BonusUser
 import com.tikonsil.tikonsil509admin.domain.model.CountryPrice
 import com.tikonsil.tikonsil509admin.domain.model.RegisteredUser
 import retrofit2.Response
@@ -27,4 +28,6 @@ interface TikonsilApi {
 
  @GET("Clients/GScaoMbBZ8fbPM1LtAD7frRMUTD3.json")
  suspend fun getRegistreredUsers():Response<List<RegisteredUser>>
+ @GET("BonusUser.json")
+ suspend fun getBounusUser():Response<BonusUser>
 }

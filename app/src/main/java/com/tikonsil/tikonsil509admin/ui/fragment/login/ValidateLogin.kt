@@ -18,7 +18,7 @@ import androidx.navigation.NavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.tikonsil.tikonsil509.data.remote.provider.AuthProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.presentation.login.LoginViewModelFactory
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.domain.repository.login.LoginRepository

@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.viewbinding.ViewBinding
-import com.tikonsil.tikonsil509.data.remote.provider.AuthProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.domain.repository.profile.ProfileRepository
 import com.tikonsil.tikonsil509admin.presentation.profile.ProfileViewModel
 import com.tikonsil.tikonsil509.presentation.profile.ProfileViewModelFactory

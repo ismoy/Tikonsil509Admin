@@ -8,5 +8,6 @@ data class NotificationList(
  val message:String,
  val idUser:String,
  val key:String,
- val date:String
+ val date:String,
+ val phone:String
 ):Serializable

@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import com.tikonsil.tikonsil509.data.remote.provider.AuthProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.data.remote.provider.UpdateUserProvider
 import com.tikonsil.tikonsil509admin.ui.activity.home.HomeActivity
 import com.tikonsil.tikonsil509admin.ui.activity.login.LoginActivity
