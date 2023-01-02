@@ -13,6 +13,11 @@ import retrofit2.Response
 /** * Created by ISMOY BELIZAIRE on 13/05/2022. */
 class RegisteredUserViewModel(private val repository: RegistreredUserRepository):ViewModel() {
 
+    var isExistSnapshot = MutableLiveData<Boolean>()
+
+    init {
+        isExistSnapshot = repository.isExistSnapshot
+    }
     fun getRegistreredUsers():LiveData<MutableList<RegisteredUser>>{
         val mutabledata =MutableLiveData<MutableList<RegisteredUser>>()
         viewModelScope.launch {

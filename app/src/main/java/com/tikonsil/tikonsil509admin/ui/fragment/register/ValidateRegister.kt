@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.hbb20.CountryCodePicker
 import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
-import com.tikonsil.tikonsil509.domain.model.Users
+import com.tikonsil.tikonsil509admin.domain.model.Users
 import com.tikonsil.tikonsil509admin.domain.repository.register.RegisterRepository
 import com.tikonsil.tikonsil509.presentation.register.RegisterViewModel
 import com.tikonsil.tikonsil509.presentation.register.RegisterViewModelFactory
@@ -293,7 +293,7 @@ import com.tikonsil.tikonsil509admin.utils.Constant
 
 
  private fun SaveData(countryselected:String?, coutrycode:String?, firstname:String?, lastname:String?, email:String?, phone:String?, role:Int, password:String?, confirmpassword:String?, status:Int?, image:String?) {
-  val users =Users(mAuthProvider.getId().toString(),countryselected,coutrycode,firstname,lastname,email,phone,role,password,confirmpassword,
+  val users = Users(mAuthProvider.getId().toString(),countryselected,coutrycode,firstname,lastname,email,phone,role,password,confirmpassword,
   status!!,image)
   dialog.setContentView(R.layout.dialog_loading)
   dialog.setCancelable(false)

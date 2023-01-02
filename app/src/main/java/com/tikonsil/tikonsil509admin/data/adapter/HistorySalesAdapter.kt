@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.tikonsil.tikonsil509admin.domain.model.Sales
@@ -164,7 +165,7 @@ class HistorySalesAdapter(val context: Context): RecyclerView.Adapter<HistorySal
      changeStatus.text =context.getString(R.string.Finalized)
      changeStatus.background =context.resources.getDrawable(R.drawable.background_confirmed)
     }
-
+    Glide.with(context).load(saledata.image).into(pictureregisteruseragente)
    }
   }
 

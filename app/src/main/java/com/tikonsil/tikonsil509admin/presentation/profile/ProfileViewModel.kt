@@ -3,7 +3,7 @@ package com.tikonsil.tikonsil509admin.presentation.profile
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tikonsil.tikonsil509.domain.model.Users
+import com.tikonsil.tikonsil509admin.domain.model.Users
 import com.tikonsil.tikonsil509admin.domain.repository.profile.ProfileRepository
 import kotlinx.coroutines.launch
 import retrofit2.Response

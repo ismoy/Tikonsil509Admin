@@ -1,13 +1,13 @@
 package com.tikonsil.tikonsil509admin.ui.fragment.home
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.RelativeLayout
-import android.widget.ScrollView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -16,12 +16,14 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
-import com.tikonsil.tikonsil509admin.data.remote.provider.TokenProvider
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.LastSaleAdapter
 import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeInnoverit
+import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.ImagesProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.TokenProvider
 import com.tikonsil.tikonsil509admin.domain.model.BalanceResponse
 import com.tikonsil.tikonsil509admin.domain.repository.home.UsersRepository
 import com.tikonsil.tikonsil509admin.domain.repository.lastsales.LastSalesRepository
@@ -39,11 +41,12 @@ import com.tikonsil.tikonsil509admin.presentation.totalsales.TotalSalesViewModel
 import com.tikonsil.tikonsil509admin.presentation.totaluser.TotalUserViewModel
 import com.tikonsil.tikonsil509admin.presentation.totaluser.TotalUserViewModelFactory
 import com.tikonsil.tikonsil509admin.utils.Constant
+import com.tikonsil.tikonsil509admin.utils.FileUtil
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 /** * Created by ISMOY BELIZAIRE on 26/04/2022. */
 abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
@@ -66,6 +69,9 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
  protected lateinit var notificationCountViewModel: NotificationCountViewModel
  protected lateinit var txtcount:TextView
  private var totalBalance:TextView?=null
+ private lateinit var image_home:CircleImageView
+ private lateinit var progressbar:ProgressBar
+
 
  override fun onCreateView(
   inflater: LayoutInflater,
@@ -100,18 +106,24 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
   notificationCountViewModel =ViewModelProvider(requireActivity(),factorynotificationcount)[NotificationCountViewModel::class.java]
   txtcount =binding.root.findViewById(R.id.txtcount)
   totalBalance =binding.root.findViewById(R.id.totalbalance)
-
+  image_home =binding.root.findViewById(R.id.image_home)
+  progressbar = binding.root.findViewById(R.id.progressbar)
   return binding.root
  }
 
 
  @SuppressLint("SetTextI18n")
  fun showDataInView(){
+  progressbar.isGone =false
   viewmodel.getOnlyUser(mAuthProvider.getId().toString())
   viewmodel.ResposeUsers.observe(viewLifecycleOwner, Observer { response->
    if (response.isSuccessful){
     response.body()?.apply {
      usernamewel?.text =firstname
+     if (image!=null){
+      Glide.with(requireActivity()).load(image).into(image_home)
+      progressbar.isGone = true
+     }
     }
     shimmerFrameLayoutwelcome?.stopShimmer()
     shimmerFrameLayoutwelcome?.isGone=true
@@ -128,6 +140,8 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
   })
  }
 
+
+
   fun getBalance(){
    val responses = RetrofitInstanceApiRechargeInnoverit.tikonsilApi.getBalance(Constant.API_KEY)
    responses.enqueue(object :Callback<BalanceResponse>{
@@ -135,10 +149,9 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
       if (response.isSuccessful){
        val success = response.body()?.success
        val balance = response.body()?.balance
-       Log.d("valorBalance",balance.toString())
        totalBalance?.text =balance.toString()
       }else{
-       Log.d("valorBalanceError",response.code().toString())
+       totalBalance?.text ="No tienes permiso por favor comunicate con Innoverit el Error es: ${response.code()}"
       }
     }
 
@@ -152,6 +165,14 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
  }
 
  fun observeData(){
+
+  mviewmodellastsales.isExistSnapshot.observe(viewLifecycleOwner, Observer { exist->
+
+   if(exist){
+    binding.root.findViewById<ImageView>(R.id.nodata).isGone=false
+    shimmerFrameLayout?.stopShimmer()
+   }
+  })
   mviewmodellastsales.getLastSales().observe(requireActivity(),
    Observer {
     if (it.isNotEmpty()){
@@ -161,9 +182,6 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
      shimmerFrameLayout?.isGone=true
      recycler?.isGone=false
      binding.root.findViewById<TextView>(R.id.nodata).isGone=true
-    }else{
-     binding.root.findViewById<TextView>(R.id.nodata).isGone=false
-     shimmerFrameLayout?.isGone=true
     }
    })
  }

@@ -10,6 +10,13 @@ import kotlinx.coroutines.launch
 
 /** * Created by ISMOY BELIZAIRE on 14/05/2022. */
 class HistorySalesViewModel(private val repository: HistorySalesRepository):ViewModel(){
+
+    var isExistSnapshot = MutableLiveData<Boolean>()
+
+    init {
+      isExistSnapshot = repository.isExistSnapshot
+    }
+
     fun getHistorySales(): LiveData<MutableList<Sales>> {
         val mutabledata = MutableLiveData<MutableList<Sales>>()
         viewModelScope.launch {

@@ -13,7 +13,7 @@ import com.tikonsil.tikonsil509admin.presentation.historysales.HistorySalesViewM
 class HistorySalesFragment : ValidateSaleHistory<FragmentHistorySalesBinding,HistorySalesViewModel>(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // shimmerFrameLayout.startShimmer()
+
         observehistorysales()
     }
 

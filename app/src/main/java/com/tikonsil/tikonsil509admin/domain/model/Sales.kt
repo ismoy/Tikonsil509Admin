@@ -20,6 +20,7 @@ data class Sales(
     @SerializedName("status") val status: Int=0,
     @SerializedName("id_product") val idProduct:Int,
     @SerializedName("salesPrice") val salesPrice:String,
-    val idKey:String
+    val idKey:String,
+    @SerializedName("image") val image:String
 
 )

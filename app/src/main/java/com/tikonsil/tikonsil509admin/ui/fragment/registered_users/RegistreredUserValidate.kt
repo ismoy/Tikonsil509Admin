@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -25,6 +27,7 @@ abstract class RegistreredUserValidate<VM:ViewModel,VB:ViewBinding>:Fragment() {
     protected lateinit var recyclerview:RecyclerView
     protected  val registreredusersadapter by lazy { RegistreredUserAdapter(requireContext()) }
     protected lateinit var linearLayoutManager:LinearLayoutManager
+    private lateinit var noDataFound:ImageView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = getFragmentBinding(inflater, container)
@@ -32,12 +35,19 @@ abstract class RegistreredUserValidate<VM:ViewModel,VB:ViewBinding>:Fragment() {
         val factory =RegisteredUserViewModelProvider(repository)
         viewmodel =ViewModelProvider(requireActivity(),factory)[RegisteredUserViewModel::class.java]
         recyclerview =binding.root.findViewById(R.id.recyclerviewregisteruser)
+        noDataFound =binding.root.findViewById(R.id.noDataFound)
         linearLayoutManager = LinearLayoutManager(requireContext())
         setupRecyclerview()
         return binding.root
     }
 
     fun observeData(){
+
+        viewmodel.isExistSnapshot.observe(viewLifecycleOwner, Observer { exist->
+            if (exist){
+                noDataFound.isGone=false
+            }
+        })
         viewmodel.getRegistreredUsers().observe(requireActivity(), Observer {
             if (it!=null){
                 registreredusersadapter.setsaleListData(it)

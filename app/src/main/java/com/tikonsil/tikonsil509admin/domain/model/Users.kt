@@ -1,4 +1,4 @@
-package com.tikonsil.tikonsil509.domain.model
+package com.tikonsil.tikonsil509admin.domain.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -12,6 +12,12 @@ import retrofit2.Response
 /** * Created by ISMOY BELIZAIRE on 12/05/2022. */
 class LastSalesViewModel(private val repository: LastSalesRepository):ViewModel() {
 
+    var isExistSnapshot = MutableLiveData<Boolean>()
+
+    init {
+       isExistSnapshot = repository.isExistSnapshot
+    }
+
     fun getLastSales(): LiveData<MutableList<LastSales>> {
         val mutabledata =MutableLiveData<MutableList<LastSales>>()
         viewModelScope.launch {

@@ -38,7 +38,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="25dp"
                         android:layout_marginBottom="10dp"
-                        android:text="@string/admin"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -67,12 +66,15 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageViewProfile"
         android:layout_width="98dp"
         android:layout_height="98dp"
         android:layout_centerHorizontal="true"
         android:elevation="15dp"
         android:padding="5dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/white"
         android:src="@drawable/man"
         app:shapeAppearanceOverlay="@style/Circular" />
 </RelativeLayout>

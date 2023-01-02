@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +19,13 @@ import androidx.navigation.NavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.presentation.login.LoginViewModelFactory
 import com.tikonsil.tikonsil509admin.R
+import com.tikonsil.tikonsil509admin.data.remote.provider.UserProvider
 import com.tikonsil.tikonsil509admin.domain.repository.login.LoginRepository
 import com.tikonsil.tikonsil509admin.presentation.login.LoginViewModel
 import com.tikonsil.tikonsil509admin.ui.activity.home.HomeActivity
@@ -34,6 +39,7 @@ abstract class ValidateLogin<VM:ViewModel,VB:ViewBinding>:Fragment() {
  protected lateinit var mAuthProvider: AuthProvider
  lateinit var dialog:Dialog
  protected lateinit var navController: NavController
+ private lateinit var mUserProvider: UserProvider
 
  override fun onCreateView(
   inflater: LayoutInflater,
@@ -46,6 +52,7 @@ abstract class ValidateLogin<VM:ViewModel,VB:ViewBinding>:Fragment() {
   viewmodel = ViewModelProvider(requireActivity(),factory)[LoginViewModel::class.java]
   mAuthProvider = AuthProvider()
   mConstant = Constant()
+  mUserProvider = UserProvider()
   dialog = Dialog(requireContext())
   return binding.root
  }
@@ -118,14 +125,39 @@ abstract class ValidateLogin<VM:ViewModel,VB:ViewBinding>:Fragment() {
      findViewById<TextInputLayout>(R.id.layoutpasswordlogin).helperText =getString(R.string.error_longitudepassword)
     }else->{
     findViewById<TextInputLayout>(R.id.layoutpasswordlogin).helperText=""
-     Login(findViewById<TextInputEditText>(R.id.emaillogin).text.toString(),findViewById<TextInputEditText>(R.id.passwordlogin).text.toString())
+    getUser()
 
    }
    }
   }
  }
 
-  private fun  Login(email:String?, password:String?) {
+ private fun getUser() {
+   mUserProvider.getUser()?.addListenerForSingleValueEvent(object :ValueEventListener{
+    override fun onDataChange(snapshot: DataSnapshot) {
+     if (snapshot.exists()){
+      for (ds in snapshot.children){
+       val email = ds.child("email").value.toString()
+        if (email !=binding.root.findViewById<TextInputEditText>(R.id.emaillogin).text.toString()){
+         Toast.makeText(requireContext() , "No tienes permiso para ingresar en la App" , Toast.LENGTH_SHORT).show()
+        }else{
+         binding.root.apply {
+          Login(findViewById<TextInputEditText>(R.id.emaillogin).text.toString(),findViewById<TextInputEditText>(R.id.passwordlogin).text.toString())
+         }
+        }
+      }
+
+     }
+    }
+
+    override fun onCancelled(error: DatabaseError) {
+
+    }
+
+   })
+ }
+
+ private fun  Login(email:String?, password:String?) {
    dialog.setContentView(R.layout.dialog_loading)
    dialog.setCancelable(false)
    if (dialog.window!=null){

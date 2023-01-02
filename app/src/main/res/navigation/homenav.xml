@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_registerCostInnoveritFragment"
             app:destination="@id/registerCostInnoveritFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerUsersFragment"
@@ -60,7 +63,11 @@
         android:id="@+id/profileFragment"
         android:name="com.tikonsil.tikonsil509admin.ui.fragment.profile.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listNotificationFragment"
         android:name="com.tikonsil.tikonsil509admin.ui.fragment.listnotification.ListNotificationFragment"

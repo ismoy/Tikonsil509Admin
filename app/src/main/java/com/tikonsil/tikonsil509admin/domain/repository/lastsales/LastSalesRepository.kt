@@ -11,7 +11,11 @@ import com.tikonsil.tikonsil509admin.data.remote.provider.LastSalesProvider
 
 /** * Created by ISMOY BELIZAIRE on 28/04/2022. */
 class LastSalesRepository {
+
  private  val salesProvider = LastSalesProvider()
+
+ var isExistSnapshot= MutableLiveData<Boolean>()
+
  suspend fun getLastSales():LiveData<MutableList<LastSales>>{
   val mutableLiveData =MutableLiveData<MutableList<LastSales>>()
   salesProvider.getLastSales()?.addValueEventListener(object :ValueEventListener{
@@ -28,6 +32,8 @@ class LastSalesRepository {
       listlastsalesdata.add(listlastsales)
      }
      mutableLiveData.value =listlastsalesdata
+    }else{
+     isExistSnapshot.value =true
     }
    }
 

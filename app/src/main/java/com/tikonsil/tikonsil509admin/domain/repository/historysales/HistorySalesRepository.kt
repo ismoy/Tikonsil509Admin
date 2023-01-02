@@ -19,6 +19,7 @@ import java.io.IOException
 class HistorySalesRepository {
     private val historysalesprovider by lazy { HistorySalesProvider() }
 
+    var isExistSnapshot = MutableLiveData<Boolean>()
      fun getHistorySales(): LiveData<MutableList<Sales>> {
         val mutableLiveDat = MutableLiveData<MutableList<Sales>>()
         historysalesprovider.getHistorySales()?.addValueEventListener(object : ValueEventListener {
@@ -41,10 +42,13 @@ class HistorySalesRepository {
                         val status = ds.child("status").value.toString()
                         val idProduct = ds.child("id_product").value.toString()
                         val salePrice = ds.child("salesPrice").value.toString()
-                        val listsales = Sales("",firstname,lastname, email,role.toInt(),typerecharge, phone, date,country,codecountry, subtotal, description,token,status.toInt(),idProduct.toInt(),salePrice,ds.key.toString())
+                        val imageView = ds.child("image").value.toString()
+                        val listsales = Sales("",firstname,lastname, email,role.toInt(),typerecharge, phone, date,country,codecountry, subtotal, description,token,status.toInt(),idProduct.toInt(),salePrice,ds.key.toString(),imageView)
                         listlastdata.add(listsales)
                     }
                     mutableLiveDat.value =listlastdata
+                }else{
+                    isExistSnapshot.value =true
                 }
             }
 

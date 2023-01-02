@@ -12,14 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/shimmer_history"
-        app:shimmer_duration="20"
+        app:shimmer_auto_start="true"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-           <!-- <include layout="@layout/history_sale_item_shimmer_effect"/>
             <include layout="@layout/history_sale_item_shimmer_effect"/>
             <include layout="@layout/history_sale_item_shimmer_effect"/>
             <include layout="@layout/history_sale_item_shimmer_effect"/>
@@ -32,7 +31,8 @@
             <include layout="@layout/history_sale_item_shimmer_effect"/>
             <include layout="@layout/history_sale_item_shimmer_effect"/>
             <include layout="@layout/history_sale_item_shimmer_effect"/>
-            <include layout="@layout/history_sale_item_shimmer_effect"/>-->
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
 
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
@@ -45,15 +45,12 @@
         android:visibility="gone">
     </androidx.recyclerview.widget.RecyclerView>
 
-    <TextView
+    <ImageView
         android:id="@+id/nodatahistory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="20sp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:visibility="gone"
         android:layout_centerInParent="true"
-        android:textStyle="bold"
-        android:text="@string/no_hay_ventas_registrada" />
+        android:src="@drawable/nodata" />
 </RelativeLayout>

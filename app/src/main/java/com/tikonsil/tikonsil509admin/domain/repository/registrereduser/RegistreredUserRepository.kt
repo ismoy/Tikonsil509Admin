@@ -11,7 +11,9 @@ import com.tikonsil.tikonsil509admin.domain.model.RegisteredUser
 /** * Created by ISMOY BELIZAIRE on 13/05/2022. */
 class RegistreredUserRepository {
  private  val registrereduserprovider by lazy { RegistreredUserProvider() }
- suspend fun getRegistreredUsers(): LiveData<MutableList<RegisteredUser>> {
+
+ var isExistSnapshot = MutableLiveData<Boolean>()
+  fun getRegistreredUsers(): LiveData<MutableList<RegisteredUser>> {
   val mutableLiveData = MutableLiveData<MutableList<RegisteredUser>>()
   registrereduserprovider.getRegistreredUser()?.addValueEventListener(object :ValueEventListener{
    override fun onDataChange(snapshot: DataSnapshot) {
@@ -31,17 +33,17 @@ class RegistreredUserRepository {
       val codecountry = ds.child("countrycode").value.toString()
       val balancenatcash = ds.child("soldnatcash").value.toString()
       val balancenlapoula = ds.child("soldlapoula").value.toString()
-
-
       val listuser =RegisteredUser(id,firstname, lastname, email, phone,role.toInt(),password,status.toInt(),balancemoncash.toDouble(),balancetopup.toDouble(),balancenatcash.toDouble(),balancenlapoula.toDouble(), codecountry,)
       listdata.add(listuser)
      }
+    }else{
+     isExistSnapshot.value =true
     }
     mutableLiveData.value =listdata
    }
 
    override fun onCancelled(error: DatabaseError) {
-    TODO("Not yet implemented")
+
    }
 
   })
