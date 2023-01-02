@@ -61,6 +61,10 @@
         <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/menu/menu.xml" value="0.1574074074074074" />
         <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/menu/menu_navegation_drawer.xml" value="0.1574074074074074" />
         <entry key="..\:/Users/beliz/Desktop/Tikonsil509Admin/app/src/main/res/menu/notification.xml" value="0.1787037037037037" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.29393115942028986" />
+        <entry key="app/src/main/res/layout/costum_notification_layout.xml" value="0.334375" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.334375" />
+        <entry key="app/src/main/res/menu/notification.xml" value="0.334375" />
       </map>
     </option>
   </component>

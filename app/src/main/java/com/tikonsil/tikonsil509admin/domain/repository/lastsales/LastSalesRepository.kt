@@ -23,7 +23,8 @@ class LastSalesRepository {
       val date = ds.child("date").value.toString()
       val codecountry = ds.child("codecountry").value.toString()
       val typerecharge = ds.child("typerecharge").value.toString()
-      val listlastsales = LastSales(subtotal,date,typerecharge, codecountry)
+      val salePrice =ds.child("salesPrice").value.toString()
+      val listlastsales = LastSales(subtotal,date,typerecharge, codecountry,salePrice)
       listlastsalesdata.add(listlastsales)
      }
      mutableLiveData.value =listlastsalesdata

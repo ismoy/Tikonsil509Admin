@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-
-
+    <string name="pending">Pendiente</string>
+    <string name="Finalized">Finalizado</string>
+    <string name="recharge_tikonsil">RECARGA TIKONSIL509</string>
+    <string name="aprobado">"Su solicitud ha sido aprobado gracias por preferirnos</string>
 </resources>

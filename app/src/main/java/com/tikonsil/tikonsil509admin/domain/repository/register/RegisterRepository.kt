@@ -1,4 +1,4 @@
-package com.tikonsil.tikonsil509.domain.repository.register
+package com.tikonsil.tikonsil509admin.domain.repository.register
 
 import android.app.Application
 import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstance

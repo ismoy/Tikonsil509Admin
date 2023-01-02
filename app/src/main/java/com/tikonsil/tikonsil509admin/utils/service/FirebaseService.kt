@@ -5,7 +5,6 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
-import android.app.PendingIntent.FLAG_ONE_SHOT
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -14,11 +13,10 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.tikonsil.tikonsil509.utils.channel.ChannelIdNotification.CHANNEL_ID
+import com.tikonsil.tikonsil509.utils.channel.ChannelIdNotification.CHANNEL_NAME
 import com.tikonsil.tikonsil509admin.R
-import com.tikonsil.tikonsil509admin.ui.activity.detailsnotification.DetailsNotification
 import com.tikonsil.tikonsil509admin.ui.activity.home.HomeActivity
-import com.tikonsil.tikonsil509admin.utils.channel.ChannelIdNotification.CHANNEL_ID
-import com.tikonsil.tikonsil509admin.utils.channel.ChannelIdNotification.CHANNEL_NAME
 import kotlin.random.Random
 
 /** * Created by ISMOY BELIZAIRE on 13/05/2022. */

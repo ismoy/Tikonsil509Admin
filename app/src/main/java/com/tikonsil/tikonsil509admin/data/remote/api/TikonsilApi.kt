@@ -1,9 +1,9 @@
 package com.tikonsil.tikonsil509admin.data.remote.api
 
 import com.tikonsil.tikonsil509.domain.model.*
-import com.tikonsil.tikonsil509admin.domain.model.BonusUser
-import com.tikonsil.tikonsil509admin.domain.model.CountryPrice
-import com.tikonsil.tikonsil509admin.domain.model.RegisteredUser
+import com.tikonsil.tikonsil509admin.domain.model.*
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -30,4 +30,19 @@ interface TikonsilApi {
  suspend fun getRegistreredUsers():Response<List<RegisteredUser>>
  @GET("BonusUser.json")
  suspend fun getBounusUser():Response<BonusUser>
+ @POST("PriceCountryInnoverit.json")
+ suspend fun registerCostTotal(@Body costInnoverit:CostInnoverit):Response<CostInnoverit>
+
+ @POST("product/send")
+ @FormUrlEncoded
+ fun sendProduct(
+  @Field("apikey") apikey: String,
+  @Field("id_product") idProduct: String,
+  @Field("destination") destination: String,
+  @Field("key") key: String,
+  @Field("note") note: String
+ ): Call<ResponseBody>
+
+ @POST("product/get/balance")
+  fun getBalance(@Query("apikey") apikey: String):Call<BalanceResponse>
 }

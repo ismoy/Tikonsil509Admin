@@ -2,6 +2,7 @@ package com.tikonsil.tikonsil509admin.ui.fragment.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.RelativeLayout
 import android.widget.ScrollView
@@ -17,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
-import com.tikonsil.tikonsil509.data.remote.provider.TokenProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.TokenProvider
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.LastSaleAdapter
+import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeInnoverit
+import com.tikonsil.tikonsil509admin.domain.model.BalanceResponse
 import com.tikonsil.tikonsil509admin.domain.repository.home.UsersRepository
 import com.tikonsil.tikonsil509admin.domain.repository.lastsales.LastSalesRepository
 import com.tikonsil.tikonsil509admin.domain.repository.totalnotification.NotificationCountRepository
@@ -35,7 +38,12 @@ import com.tikonsil.tikonsil509admin.presentation.totalsales.TotalSalesViewModel
 import com.tikonsil.tikonsil509admin.presentation.totalsales.TotalSalesViewModelFactory
 import com.tikonsil.tikonsil509admin.presentation.totaluser.TotalUserViewModel
 import com.tikonsil.tikonsil509admin.presentation.totaluser.TotalUserViewModelFactory
+import com.tikonsil.tikonsil509admin.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /** * Created by ISMOY BELIZAIRE on 26/04/2022. */
 abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
@@ -57,6 +65,7 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
  protected lateinit var totalventasagent:TextView
  protected lateinit var notificationCountViewModel: NotificationCountViewModel
  protected lateinit var txtcount:TextView
+ private var totalBalance:TextView?=null
 
  override fun onCreateView(
   inflater: LayoutInflater,
@@ -90,6 +99,8 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
   val factorynotificationcount = NotificationCountViewModeProvider(repositorynotificationcount)
   notificationCountViewModel =ViewModelProvider(requireActivity(),factorynotificationcount)[NotificationCountViewModel::class.java]
   txtcount =binding.root.findViewById(R.id.txtcount)
+  totalBalance =binding.root.findViewById(R.id.totalbalance)
+
   return binding.root
  }
 
@@ -115,6 +126,29 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
     Toast.makeText(requireContext(), response.code(), Toast.LENGTH_SHORT).show()
    }
   })
+ }
+
+  fun getBalance(){
+   val responses = RetrofitInstanceApiRechargeInnoverit.tikonsilApi.getBalance(Constant.API_KEY)
+   responses.enqueue(object :Callback<BalanceResponse>{
+    override fun onResponse(call: Call<BalanceResponse> , response: Response<BalanceResponse>) {
+      if (response.isSuccessful){
+       val success = response.body()?.success
+       val balance = response.body()?.balance
+       Log.d("valorBalance",balance.toString())
+       totalBalance?.text =balance.toString()
+      }else{
+       Log.d("valorBalanceError",response.code().toString())
+      }
+    }
+
+    override fun onFailure(call: Call<BalanceResponse> , t: Throwable) {
+     Log.d("valorBalanceError",t.message.toString())
+    }
+
+   })
+
+
  }
 
  fun observeData(){

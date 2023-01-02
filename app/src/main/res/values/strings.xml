@@ -181,6 +181,10 @@
     <string name="select_the_bonus_to_exchange">Select the bonus to exchange</string>
     <string name="phone">Phone</string>
     <string name="changebonuprice">Change Price Bonus</string>
+    <string name="pending">Pending</string>
+    <string name="Finalized">Finalized</string>
+    <string name="recharge_tikonsil">TOPUP TIKONSIL509</string>
+    <string name="aprobado">Your request has been approved thank you for choosing us</string>
 
 
 </resources>

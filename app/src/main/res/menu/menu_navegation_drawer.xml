@@ -14,7 +14,7 @@
     <item
         android:id="@+id/nav_change_price_country"
         android:title="@string/cambiar_precios_paises"
-        android:icon="@drawable/ic_baseline_person_add_alt_24"/>
+        android:icon="@drawable/changeprice"/>
     <item
         android:id="@+id/nav_change_number_account"
         android:title="@string/cambiar_numero_de_cuenta"
@@ -22,6 +22,11 @@
     <item
         android:id="@+id/nav_change_bonus_register"
         android:title="@string/cambiar_bonus_register"
+        android:icon="@drawable/ic_baseline_person_add_alt_24"/>
+
+    <item
+        android:id="@+id/nav_register_cost_innoverit"
+        android:title="Registrar los costos de Innoverit"
         android:icon="@drawable/ic_baseline_person_add_alt_24"/>
     <item
         android:id="@+id/nav_policyAndPrivacyFragment"

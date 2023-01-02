@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_changePriceBonusFragment"
             app:destination="@id/changePriceBonusFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_registerCostInnoveritFragment"
+            app:destination="@id/registerCostInnoveritFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerUsersFragment"
@@ -73,6 +76,15 @@
         android:label="@string/changebonuprice" >
         <action
             android:id="@+id/action_changePriceBonusFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerCostInnoveritFragment"
+        android:name="com.tikonsil.tikonsil509admin.ui.fragment.RegisterCostInnoveritFragment"
+        android:label="Registrar Costos"
+        tools:layout="@layout/fragment_register_cost_innoverit" >
+        <action
+            android:id="@+id/action_registerCostInnoveritFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 

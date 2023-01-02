@@ -25,6 +25,7 @@ class HomeFragment : HomeValidate<FragmentHomeBinding, UserViewModel>() {
             observerListNotification()
         }
 
+        getBalance()
     }
 
     private fun generateToken() {

@@ -1,4 +1,4 @@
-package com.tikonsil.tikonsil509.data.remote.provider
+package com.tikonsil.tikonsil509admin.data.remote.provider
 
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

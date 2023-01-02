@@ -1,4 +1,4 @@
-package com.tikonsil.tikonsil509admin.utils.channel
+package com.tikonsil.tikonsil509.utils.channel
 
 /** * Created by ISMOY BELIZAIRE on 12/05/2022. */
 object ChannelIdNotification {

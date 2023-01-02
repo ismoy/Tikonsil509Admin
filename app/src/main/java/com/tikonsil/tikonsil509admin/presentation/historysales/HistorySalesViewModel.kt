@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tikonsil.tikonsil509.domain.model.Sales
+import com.tikonsil.tikonsil509admin.domain.model.Sales
 import com.tikonsil.tikonsil509admin.domain.repository.historysales.HistorySalesRepository
 import kotlinx.coroutines.launch
 
@@ -18,5 +18,11 @@ class HistorySalesViewModel(private val repository: HistorySalesRepository):View
             }
         }
         return mutabledata
+    }
+
+    fun sendProduct(apikey:String,id_product:String,destination:String,key:String,note:String){
+        viewModelScope.launch {
+            repository.sendProduct(apikey, id_product, destination, key, note)
+        }
     }
 }

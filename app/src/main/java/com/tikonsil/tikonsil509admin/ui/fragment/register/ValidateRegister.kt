@@ -26,7 +26,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.hbb20.CountryCodePicker
 import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509.domain.model.Users
-import com.tikonsil.tikonsil509.domain.repository.register.RegisterRepository
+import com.tikonsil.tikonsil509admin.domain.repository.register.RegisterRepository
 import com.tikonsil.tikonsil509.presentation.register.RegisterViewModel
 import com.tikonsil.tikonsil509.presentation.register.RegisterViewModelFactory
 import com.tikonsil.tikonsil509admin.R
