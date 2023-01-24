@@ -7,121 +7,190 @@
     tools:context=".ui.fragment.RegisterCostInnoveritFragment">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/SelectaCountry"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/buttonpaises"
-        app:layout_constraintBottom_toTopOf="@id/buttonpaises" />
-    <com.hbb20.CountryCodePicker
-        android:id="@+id/buttonpaises"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:ccp_showFullName="true"
-        app:ccp_showPhoneCode="false"
-        app:ccp_showNameCode="true"
-        app:ccp_autoDetectCountry="false"
-        app:ccp_autoDetectLanguage="true"
-        app:ccp_countryAutoDetectionPref="NETWORK_SIM_LOCALE"
-        android:layout_marginTop="90dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_spinner_country"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nombre Operador"
-        app:layout_constraintBottom_toTopOf="@+id/layoutfirstname"
-        app:layout_constraintStart_toStartOf="@+id/layoutfirstname"
-        android:textStyle="bold" />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutfirstname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="30dp"
-        android:hint="Eg:Digicel"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        app:helperTextTextColor="@color/design_default_color_error"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonpaises">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/operatorName"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chwazi youn peyi"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/buttonpaises"
+            app:layout_constraintBottom_toTopOf="@id/buttonpaises" />
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/buttonpaises"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textAllCaps="true"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:ccp_showFullName="true"
+            app:ccp_showPhoneCode="false"
+            app:ccp_showNameCode="true"
+            app:ccp_autoDetectCountry="false"
+            app:ccp_autoDetectLanguage="true"
+            app:ccp_countryAutoDetectionPref="NETWORK_SIM_LOCALE"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/bg_spinner_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Precio de venta"
-        app:layout_constraintBottom_toTopOf="@+id/layoutsaleprice"
-        app:layout_constraintStart_toStartOf="@+id/layoutsaleprice"
-        android:textStyle="bold" />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutsaleprice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="30dp"
-        android:hint="Eg: 102.71 HTG ==> 1.83 USD"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        app:helperTextTextColor="@color/design_default_color_error"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutfirstname">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/saleprice"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non Konpayi an"
+            app:layout_constraintBottom_toTopOf="@+id/layoutfirstname"
+            app:layout_constraintStart_toStartOf="@+id/layoutfirstname"
+            android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutfirstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textAllCaps="true"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="30dp"
+            android:hint="mete non operaté telefón nan"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonpaises">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Codigo de Producto"
-        app:layout_constraintBottom_toTopOf="@+id/layoutcodeproduct"
-        app:layout_constraintStart_toStartOf="@+id/layoutcodeproduct"
-        android:textStyle="bold" />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutcodeproduct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="30dp"
-        android:hint="Eg: 22050798"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        app:helperTextTextColor="@color/design_default_color_error"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutsaleprice">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/operatorName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textAllCaps="true"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/codeproduct"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pri rechaj la"
+            app:layout_constraintBottom_toTopOf="@+id/layoutsaleprice"
+            app:layout_constraintStart_toStartOf="@+id/layoutsaleprice"
+            android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutsaleprice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="8"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="30dp"
+            android:hint="ekri selman valé kób la an dola"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutfirstname">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/saleprice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textAllCaps="true"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pri kliyan ap resevwa "
+            app:layout_constraintBottom_toTopOf="@+id/layoutkliyan"
+            app:layout_constraintStart_toStartOf="@+id/layoutkliyan"
+            android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutkliyan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="30dp"
+            android:hint="ekri kantite moun nan ap jwen an goud"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutsaleprice">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/salekliyan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textAllCaps="true"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kód rechaj la "
+            app:layout_constraintBottom_toTopOf="@+id/layoutcodeproduct"
+            app:layout_constraintStart_toStartOf="@+id/layoutcodeproduct"
+            android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutcodeproduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="30dp"
+            android:hint="ekri kód idantifikasyon rechaj la"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutkliyan">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/codeproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="8"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non lajan peyi a"
+            app:layout_constraintBottom_toTopOf="@+id/layoutmonyey"
+            app:layout_constraintStart_toStartOf="@+id/layoutmonyey"
+            android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutmonyey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="30dp"
+            android:hint="ekri Kób peyi an eg: HTG se pou ayiti"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutcodeproduct">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/monyey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLength="8"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSend"

@@ -1,9 +1,6 @@
 package com.tikonsil.tikonsil509admin.ui.fragment.home
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -20,9 +17,8 @@ import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.LastSaleAdapter
-import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeInnoverit
+import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeTikonsil509
 import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
-import com.tikonsil.tikonsil509admin.data.remote.provider.ImagesProvider
 import com.tikonsil.tikonsil509admin.data.remote.provider.TokenProvider
 import com.tikonsil.tikonsil509admin.domain.model.BalanceResponse
 import com.tikonsil.tikonsil509admin.domain.repository.home.UsersRepository
@@ -41,12 +37,10 @@ import com.tikonsil.tikonsil509admin.presentation.totalsales.TotalSalesViewModel
 import com.tikonsil.tikonsil509admin.presentation.totaluser.TotalUserViewModel
 import com.tikonsil.tikonsil509admin.presentation.totaluser.TotalUserViewModelFactory
 import com.tikonsil.tikonsil509admin.utils.Constant
-import com.tikonsil.tikonsil509admin.utils.FileUtil
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 
 /** * Created by ISMOY BELIZAIRE on 26/04/2022. */
 abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
@@ -138,27 +132,39 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
     Toast.makeText(requireContext(), response.code(), Toast.LENGTH_SHORT).show()
    }
   })
+
  }
 
 
 
   fun getBalance(){
-   val responses = RetrofitInstanceApiRechargeInnoverit.tikonsilApi.getBalance(Constant.API_KEY)
-   responses.enqueue(object :Callback<BalanceResponse>{
-    override fun onResponse(call: Call<BalanceResponse> , response: Response<BalanceResponse>) {
-      if (response.isSuccessful){
-       val success = response.body()?.success
-       val balance = response.body()?.balance
-       totalBalance?.text =balance.toString()
-      }else{
-       totalBalance?.text ="No tienes permiso por favor comunicate con Innoverit el Error es: ${response.code()}"
+   viewmodel.getAuthorizationKey()
+   viewmodel.responseAuthorizationKey.observe(viewLifecycleOwner, Observer {
+    if (it.isSuccessful){
+     val headers = HashMap<String,String>()
+     headers["Authorization"] = it.body()!!.key
+     val responses = RetrofitInstanceApiRechargeTikonsil509.tikonsilApi.getBalance(headers)
+     responses.enqueue(object :Callback<BalanceResponse>{
+      override fun onResponse(call: Call<BalanceResponse> , response: Response<BalanceResponse>) {
+       if (response.isSuccessful){
+        val success = response.body()?.success
+        val balance = response.body()?.balance
+        totalBalance?.text =balance.toString()
+       }else{
+        totalBalance?.text ="No tienes permiso por favor comunicate con Innoverit el Error es: ${response.code()}"
+       }
+       Log.i("ResponseInnoverit",response.toString())
+       Log.i("ResponseInnoverit",response.message().toString())
+       Log.i("ResponseInnoverit",response.code().toString())
       }
-    }
 
-    override fun onFailure(call: Call<BalanceResponse> , t: Throwable) {
-     Log.d("valorBalanceError",t.message.toString())
-    }
+      override fun onFailure(call: Call<BalanceResponse> , t: Throwable) {
+       Log.d("valorBalanceError",t.message.toString())
+      }
 
+     })
+
+    }
    })
 
 

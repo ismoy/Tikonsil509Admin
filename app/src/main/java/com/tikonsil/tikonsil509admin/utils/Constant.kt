@@ -12,7 +12,7 @@ class Constant {
   const val BASE_URL = "https://tikonsil509-ea2cc-default-rtdb.firebaseio.com/"
   const val VALIDATERUT ="^[0-9]+-[0-9kK]{1}$"
   const val MATCHES ="^[ a-zA-Z\\u00F1\\u00D1]+\$"
-  const val BASE_URL_INNOVIT = "https://www.innoverit.com/api/v2/"
+  const val BASE_URL_TIKONSIL509 = "https://tikonsil509.com/"
   const val BASE_URL_FCM ="https://fcm.googleapis.com/"
   const val SERVER_KEY ="AAAAj812wm0:APA91bGryDQHRsHZQQqKNkA6gdpeeEBl1w7prud_cFILDbgDwZoEkpYlO8GjkKfZKzzL_GyBxsjKGkjD4BDZ6Zwrfm793aRL-d3EYwTzvLkXeojUQemb5b0XsehoI5oFGYy5yzvY7hw-"
   const val CONTENT_TYPE ="application/json"

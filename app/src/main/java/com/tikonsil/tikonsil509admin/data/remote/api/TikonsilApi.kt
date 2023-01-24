@@ -30,19 +30,21 @@ interface TikonsilApi {
  suspend fun getRegistreredUsers():Response<List<RegisteredUser>>
  @GET("BonusUser.json")
  suspend fun getBounusUser():Response<BonusUser>
- @POST("PriceCountryInnoverit.json")
+ @POST("IdProductCountryInnoverit.json")
  suspend fun registerCostTotal(@Body costInnoverit:CostInnoverit):Response<CostInnoverit>
 
- @POST("product/send")
+ @POST("api/send_recharge")
  @FormUrlEncoded
  fun sendProduct(
-  @Field("apikey") apikey: String,
   @Field("id_product") idProduct: String,
   @Field("destination") destination: String,
-  @Field("key") key: String,
-  @Field("note") note: String
- ): Call<ResponseBody>
+  @HeaderMap authorization:Map<String,String>
+ ): Call<SendRecharge>
 
- @POST("product/get/balance")
-  fun getBalance(@Query("apikey") apikey: String):Call<BalanceResponse>
+ @POST("api/get_balance")
+  fun getBalance(@HeaderMap authorization:Map<String,String>):Call<BalanceResponse>
+
+ @GET("secretKeyAuthorization.json")
+ suspend fun getKeyAuthorization():Response<Authorization>
 }
+

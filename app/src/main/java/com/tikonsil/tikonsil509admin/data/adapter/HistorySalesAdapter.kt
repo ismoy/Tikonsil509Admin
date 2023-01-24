@@ -11,23 +11,25 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.tikonsil.tikonsil509admin.domain.model.Sales
 import com.tikonsil.tikonsil509admin.R
-import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeInnoverit
+import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstance
+import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeTikonsil509
 import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceFCM
 import com.tikonsil.tikonsil509admin.data.remote.provider.UpdateStatusSalesProvider
 import com.tikonsil.tikonsil509admin.databinding.ItemFormHistoryInvoicesBinding
 import com.tikonsil.tikonsil509admin.domain.model.NotificationData
 import com.tikonsil.tikonsil509admin.domain.model.PushNotification
+import com.tikonsil.tikonsil509admin.domain.model.SendRecharge
 import com.tikonsil.tikonsil509admin.ui.activity.home.HomeActivity
-import com.tikonsil.tikonsil509admin.utils.Constant.Companion.API_KEY
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -38,6 +40,7 @@ import java.io.IOException
 /** * Created by ISMOY BELIZAIRE on 02/05/2022. */
 class HistorySalesAdapter(val context: Context): RecyclerView.Adapter<HistorySalesAdapter.MyViewHolder>() {
  private var saleList = mutableListOf<Sales>()
+ lateinit var dialogPopUp:Dialog
  fun setsaleListDataHistory(data:MutableList<Sales>) {
   saleList = data
  }
@@ -75,6 +78,8 @@ class HistorySalesAdapter(val context: Context): RecyclerView.Adapter<HistorySal
     val lastnamedialog = findViewById<TextInputEditText>(R.id.lastnamedialog)
     val passworddialog = findViewById<TextInputEditText>(R.id.passworddialog)
     val layoutpasswordname = findViewById<TextInputLayout>(R.id.layoutpasswordname)
+    val cardContainer = findViewById<CardView>(R.id.cardContainer)
+    val cardContainerDialog = findViewById<CardView>(R.id.cardViewDialog)
     //set data in edit text
      firstnamedialog.setText(saledata.salesPrice)
      lastnamedialog.setText(saledata.idProduct.toString())
@@ -87,7 +92,7 @@ class HistorySalesAdapter(val context: Context): RecyclerView.Adapter<HistorySal
     }
     btn_edit_dialog.setOnClickListener {
      if (passworddialog.text.toString().isNotEmpty()){
-      sendRecharge(saledata, dialog,passworddialog)
+      sendRecharge(saledata,passworddialog,cardContainer,cardContainerDialog)
      }else{
       layoutpasswordname.helperText ="Ingrese un numero 0 o 1"
      }
@@ -98,36 +103,65 @@ class HistorySalesAdapter(val context: Context): RecyclerView.Adapter<HistorySal
  }
 
 
- private fun sendRecharge(saledata: Sales , dialog: Dialog , passworddialog: TextInputEditText) {
-   val call = RetrofitInstanceApiRechargeInnoverit.tikonsilApi.sendProduct(API_KEY,saledata.idProduct.toString(),saledata.phone.toString(),"${saledata.idProduct+1}","")
-  val updateStatus = UpdateStatusSalesProvider()
-   call.enqueue(object: Callback<ResponseBody> {
-    override fun onResponse(call: Call<ResponseBody> , response: Response<ResponseBody>) {
-     if (response.isSuccessful){
-      try {
-       val responseString =response.body()!!.string()
-       Log.d("responseApi",responseString)
-       updateStatus.updateStatus(saledata.idKey,passworddialog.text.toString())
-       context.startActivity(Intent(context.applicationContext,HomeActivity::class.java))
-       Toast.makeText(context , "Has recargado con éxito el numero telefono" , Toast.LENGTH_SHORT).show()
-       sendNotificationToOtherDevice(saledata.token)
-      }catch (e: IOException){
-       Log.d("responseApi",e.message.toString())
-       dialog.dismiss()
+ private fun sendRecharge(
+  saledata: Sales ,
+  passworddialog: TextInputEditText ,
+  cardContainer: CardView ,
+  cardContainerDialog: CardView
+ ) {
+  cardContainerDialog.visibility =View.VISIBLE
+  cardContainer.visibility = View.GONE
+  GlobalScope.launch {
+   val getAuthorizationKey = RetrofitInstance.tikonsilApi.getKeyAuthorization()
+   if (getAuthorizationKey.isSuccessful){
+    val headers = HashMap<String,String>()
+    headers["Authorization"] = getAuthorizationKey.body()!!.key
+    val call = RetrofitInstanceApiRechargeTikonsil509.tikonsilApi.sendProduct(saledata.idProduct.toString(),saledata.phone.toString(),headers)
+    val updateStatus = UpdateStatusSalesProvider()
+    call.enqueue(object: Callback<SendRecharge> {
+     override fun onResponse(call: Call<SendRecharge> , response: Response<SendRecharge>) {
+      if (response.isSuccessful){
+       try {
+        val responseString =response.body().toString()
+        Log.d("responseApi",responseString)
+        if (response.body()?.status =="success"){
+         updateStatus.updateStatus(saledata.idKey,passworddialog.text.toString())
+         context.startActivity(Intent(context.applicationContext,HomeActivity::class.java))
+         Toast.makeText(context , "Has recargado con éxito el numero telefono" , Toast.LENGTH_LONG).show()
+         sendNotificationToOtherDevice(saledata.token)
+         cardContainerDialog.visibility =View.GONE
+         cardContainer.visibility = View.VISIBLE
+        }else{
+         Toast.makeText(context.applicationContext , "No fue posible realizar la recarga pon en contacto con su proveedor" , Toast.LENGTH_SHORT).show()
+         Log.d("responseApi",response.body().toString())
+        }
+       }catch (e: IOException){
+        Toast.makeText(context.applicationContext , "No fue posible realizar la recarga" , Toast.LENGTH_SHORT).show()
+        Log.d("responseApi",e.message.toString())
+        cardContainerDialog.visibility =View.GONE
+        cardContainer.visibility = View.VISIBLE
+       }
+      }else{
+       Log.d("ErrorResponseApi",response.errorBody().toString())
+       Log.d("ErrorResponseApi",response.code().toString())
+       cardContainerDialog.visibility =View.GONE
+       cardContainer.visibility = View.VISIBLE
+       Toast.makeText(context.applicationContext , "No fue posible realizar la recarga" , Toast.LENGTH_SHORT).show()
       }
-     }else{
-      Log.d("ErrorResponseApi",response.errorBody().toString())
-      Log.d("ErrorResponseApi",response.code().toString())
-      dialog.dismiss()
      }
-    }
 
-    override fun onFailure(call: Call<ResponseBody> , t: Throwable) {
-     Log.d("ErrorResponseApi",t.toString())
-     dialog.dismiss()
-    }
+     override fun onFailure(call: Call<SendRecharge> , t: Throwable) {
+      Log.d("ErrorResponseApi",t.toString())
+      cardContainerDialog.visibility =View.GONE
+      cardContainer.visibility = View.VISIBLE
+      Toast.makeText(context.applicationContext , "No fue posible realizar la recarga" , Toast.LENGTH_SHORT).show()
+     }
 
-   })
+    })
+   }
+  }
+
+
  }
 
  override fun getItemCount(): Int {

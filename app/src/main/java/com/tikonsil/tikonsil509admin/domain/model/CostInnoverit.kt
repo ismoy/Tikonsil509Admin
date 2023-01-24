@@ -1,9 +1,12 @@
 package com.tikonsil.tikonsil509admin.domain.model
 
 data class CostInnoverit(
-    val country:String,
+    val priceReceiver:String,
     val operatorName:String,
-    val priceSale:String,
-    val id_product:String,
-    val id_key:String
+    val priceSales:String,
+    val nameMoneyCountryReceiver:String,
+    val nameMoneyCountrySale:String,
+    val idProduct:String,
+    val country:String,
+    val formatPrice:String
 )

@@ -29,6 +29,9 @@ class RegisterCostInnoveritFragment : Fragment() {
     private lateinit var costInnoveritProvider: CostInnoveritProvider
 
     private lateinit var iproductProvider: IdProductProvider
+
+    private var countrySelected:String?=null
+
     override fun onCreateView(
         inflater: LayoutInflater , container: ViewGroup? ,
         savedInstanceState: Bundle?
@@ -44,6 +47,13 @@ class RegisterCostInnoveritFragment : Fragment() {
         observeViewModel()
         costInnoveritProvider = CostInnoveritProvider()
         iproductProvider= IdProductProvider()
+        manageCountrySelected()
+    }
+
+    private fun manageCountrySelected() {
+        binding.buttonpaises.setOnCountryChangeListener{
+            countrySelected = binding.buttonpaises.selectedCountryNameCode
+        }
     }
 
     private fun observeViewModel() {
@@ -57,34 +67,19 @@ class RegisterCostInnoveritFragment : Fragment() {
 
     private fun saveData() {
         binding.apply {
-            if (buttonpaises.selectedCountryNameCode.toString().isNotEmpty() && operatorName.text.toString().isNotEmpty() && saleprice.text.toString().isNotEmpty() && codeproduct.text.toString().isNotEmpty()){
-                val saved =CostInnoverit(buttonpaises.selectedCountryNameCode.toString().toUpperCase(),operatorName.text.toString().toUpperCase(),"${saleprice.text.toString().toUpperCase()} ==> ${operatorName.text.toString().toUpperCase()}" ,codeproduct.text.toString(),costInnoveritProvider.getKey().toString())
+            if (buttonpaises.selectedCountryNameCode.toString().isNotEmpty() && operatorName.text.toString().isNotEmpty() && saleprice.text.toString().isNotEmpty() && codeproduct.text.toString().isNotEmpty() && monyey.text.toString().isNotEmpty()){
+               val  formatSales = "${salekliyan.text.toString()} ${monyey.text.toString().toUpperCase()} ==> ${saleprice.text.toString()} USD ==> ${operatorName.text.toString().toUpperCase()}"
+                val saved =CostInnoverit(salekliyan.text.toString(),operatorName.text.toString().toUpperCase(),saleprice.text.toString(),monyey.text.toString().toUpperCase(),"USD",codeproduct.text.toString(),countrySelected!!,formatSales)
                 viewModel.registerPriceCost(saved)
                 viewModel.responsePriceCost.observe(viewLifecycleOwner, Observer { response->
                     if (response.isSuccessful){
-                            costInnoveritProvider.getIdKeyAdded(codeproduct.text.toString())?.addValueEventListener(object :ValueEventListener{
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.exists()){
-                                        for (ds in snapshot.children){
-                                            val idkey =ds.child("id_key").value.toString()
-                                            val priceSales =ds.child("priceSale").value.toString()
-                                            val idProduct =IdProducts(codeproduct.text.toString(),idkey,priceSales)
-                                            iproductProvider.createProduct(idProduct)!!.isSuccessful
-                                        }
-
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-
-                                }
-
-                            })
                         Toast.makeText(requireContext() , "se registro correctamente " , Toast.LENGTH_SHORT).show()
                     }else{
                         Toast.makeText(requireContext() , "Error al registrar ${response.errorBody()}" , Toast.LENGTH_SHORT).show()
                     }
                 })
+            }else{
+                layoutkliyan.helperText = "ranpli tout kasye yo"
             }
         }
     }

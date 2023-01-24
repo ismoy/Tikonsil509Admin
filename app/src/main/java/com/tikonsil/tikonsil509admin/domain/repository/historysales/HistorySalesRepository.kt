@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeInnoverit
+import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeTikonsil509
 import com.tikonsil.tikonsil509admin.domain.model.Sales
 import com.tikonsil.tikonsil509admin.data.remote.provider.HistorySalesProvider
 import okhttp3.ResponseBody
@@ -57,29 +57,5 @@ class HistorySalesRepository {
 
         })
         return mutableLiveDat
-    }
-
-    fun sendProduct(apikey:String,id_product:String,destination:String,key:String,note:String){
-        val call = RetrofitInstanceApiRechargeInnoverit.tikonsilApi.sendProduct(apikey,id_product,destination,key,note)
-        call.enqueue(object: Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody> , response: Response<ResponseBody>) {
-                if (response.isSuccessful){
-                    try {
-                        val responseString =response.body()!!.string()
-                        Log.d("responseApi",responseString)
-                    }catch (e: IOException){
-                        Log.d("responseApi",e.message.toString())
-                    }
-                }else{
-                    Log.d("ErrorResponseApi",response.errorBody().toString())
-                    Log.d("ErrorResponseApi",response.code().toString())
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseBody> , t: Throwable) {
-                Log.d("ErrorResponseApi",t.toString())
-            }
-
-        })
     }
 }

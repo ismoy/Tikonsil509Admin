@@ -1,6 +1,7 @@
 package com.tikonsil.tikonsil509admin.domain.repository.home
 
 import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstance
+import com.tikonsil.tikonsil509admin.domain.model.Authorization
 import com.tikonsil.tikonsil509admin.domain.model.Users
 import retrofit2.Response
 
@@ -10,5 +11,7 @@ class UsersRepository {
     return RetrofitInstance.tikonsilApi.getOnlyUser(uidUser)
     }
 
-
+    suspend fun getAuthorizationKey():Response<Authorization>{
+        return RetrofitInstance.tikonsilApi.getKeyAuthorization()
+    }
 }
