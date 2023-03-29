@@ -8,5 +8,6 @@ data class CostInnoverit(
     val nameMoneyCountrySale:String,
     val idProduct:String,
     val country:String,
-    val formatPrice:String
+    val formatPrice:String,
+    val idKey:String
 )

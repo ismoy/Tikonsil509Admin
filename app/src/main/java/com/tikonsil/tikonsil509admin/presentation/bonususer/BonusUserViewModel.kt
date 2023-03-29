@@ -12,10 +12,5 @@ import retrofit2.Response
 class BonusUserViewModel(private val repository: BonusUserRepository):ViewModel() {
  val myResponseGetUserBonus: MutableLiveData<Response<BonusUser>> by lazy { MutableLiveData() }
 
- fun getBonusUser() {
-  viewModelScope.launch {
-   val response = repository.getBonusUser()
-   myResponseGetUserBonus.value = response
-  }
- }
+
 }

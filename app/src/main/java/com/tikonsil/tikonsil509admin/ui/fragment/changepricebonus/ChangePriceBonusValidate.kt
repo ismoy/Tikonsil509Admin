@@ -679,47 +679,6 @@ abstract class ChangePriceBonusValidate<VM:ViewModel,VB:ViewBinding> :Fragment()
         }
     }
 
-    fun observedatabonus(){
-        viewmodel.getBonusUser()
-        viewmodel.myResponseGetUserBonus.observe(viewLifecycleOwner, Observer { bonus->
-            if (bonus.isSuccessful){
-                TOPUPHAITI=bonus.body()?.bounustopuphaiti
-                MONCASHHAITI=bonus.body()?.bounusmoncashhaiti
-                NATCASHHAITI=bonus.body()?.bounusnatcashhaiti
-                LAPOULAHAITI=bonus.body()?.bounuslapoulahaiti
-                TOPUPCHILE=bonus.body()?.bounustopupchile
-                MONCASHCHILE=bonus.body()?.bounusmoncashchile
-                NATCASHCHILE=bonus.body()?.bounusnatcashchile
-                LAPOULACHILE=bonus.body()?.bounuslapoulachile
-                TOPUPCUBA=bonus.body()?.bounustopupcuba
-                MONCASHCUBA=bonus.body()?.bounusmoncashcuba
-                LAPOULACUBA=bonus.body()?.bounuslapoulacuba
-                NATCASHCUBA=bonus.body()?.bounusnatcashcuba
-                TOPUPPANAMA=bonus.body()?.bounustopuppanama
-                MONCASHPANAMA=bonus.body()?.bounusmoncashpanama
-                NATCASHPANAMA=bonus.body()?.bounusnatcashpanama
-                LAPOULAPANAMA=bonus.body()?.bounuslapoulapanama
-                TOPUPBRAZIL=bonus.body()?.bounustopupbrazil
-                MONCASHBRAZIL=bonus.body()?.bounusmoncashbrazil
-                NATCASHBRAZIL=bonus.body()?.bounusnatcashbrazil
-                LAPOULABRAZIL=bonus.body()?.bounuslapoulabrazil
-                TOPUPMEXICO=bonus.body()?.bounustopupmexico
-                MONCASHMEXICO=bonus.body()?.bounusmoncashmexico
-                NATCASHMEXICO=bonus.body()?.bounusnatcashmexico
-                LAPOULAMEXICO=bonus.body()?.bounuslapoulamexico
-                TOPUPREPUBLICANDOMINIK=bonus.body()?.bounustopuprd
-                MONCASHREPUBLICANDOMINIK=bonus.body()?.bounusmoncashrd
-                NATCASHREPUBLICANDOMINIK=bonus.body()?.bounusnatcashrd
-                LAPOULAREPUBLICANDOMINIK=bonus.body()?.bounuslapoulard
-                TOPUPOTHERCOUNTRY=bonus.body()?.bounustopupothercountry
-                MONCASHOTHERCOUNTRY=bonus.body()?.bounusmoncashothercountry
-                NATCASHOTHERCOUNTRY=bonus.body()?.bounusnatcashothercountry
-                LAPOULAOTHERCOUNTRY=bonus.body()?.bounuslapoulaothercountry
-            }else{
-                Toast.makeText(requireContext(), "problema", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
     companion object{
         var TOPUPHAITI:Float?=null
         var MONCASHHAITI:Float?=null

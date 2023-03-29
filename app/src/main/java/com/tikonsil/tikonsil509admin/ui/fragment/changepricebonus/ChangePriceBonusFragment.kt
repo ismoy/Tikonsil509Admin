@@ -20,7 +20,6 @@ class ChangePriceBonusFragment :ChangePriceBonusValidate<BonusUserViewModel,Frag
             setAdapter(arrayAdapter)
             onItemClickListener=this@ChangePriceBonusFragment
         }
-        observedatabonus()
     }
     override fun getViewModel()=BonusUserViewModel::class.java
     override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?)= FragmentChangePriceBonusBinding.inflate(inflater,container,false)

@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tikonsil.tikonsil509.domain.model.LastSales
-import com.tikonsil.tikonsil509admin.domain.repository.lastsales.LastSalesRepository
+import com.tikonsil.tikonsil509admin.domain.repository.sales.LastSalesRepository
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 /** * Created by ISMOY BELIZAIRE on 12/05/2022. */
 class LastSalesViewModel(private val repository: LastSalesRepository):ViewModel() {

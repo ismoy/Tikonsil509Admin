@@ -23,11 +23,4 @@ class UserViewModel(val repository: UsersRepository):ViewModel() {
  }
 
 
- fun getAuthorizationKey(){
-  viewModelScope.launch {
-   val response = repository.getAuthorizationKey()
-   responseAuthorizationKey.value = response
-  }
-
- }
 }

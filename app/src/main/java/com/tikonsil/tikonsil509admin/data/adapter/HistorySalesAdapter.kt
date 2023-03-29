@@ -1,5 +1,7 @@
 package com.tikonsil.tikonsil509admin.data.adapter
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -10,226 +12,161 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
+import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.tikonsil.tikonsil509admin.domain.model.Sales
 import com.tikonsil.tikonsil509admin.R
-import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstance
-import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeTikonsil509
-import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceFCM
+import com.tikonsil.tikonsil509admin.data.adapter.viewHolder.BaseListViewHolder
 import com.tikonsil.tikonsil509admin.data.remote.provider.UpdateStatusSalesProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.firebaseApi.FirebaseApi
+import com.tikonsil.tikonsil509admin.data.remote.retrofitInstance.Headers
+import com.tikonsil.tikonsil509admin.data.remote.retrofitInstance.RetrofitInstance
+import com.tikonsil.tikonsil509admin.databinding.BottomSheetUpdateBinding
 import com.tikonsil.tikonsil509admin.databinding.ItemFormHistoryInvoicesBinding
-import com.tikonsil.tikonsil509admin.domain.model.NotificationData
-import com.tikonsil.tikonsil509admin.domain.model.PushNotification
-import com.tikonsil.tikonsil509admin.domain.model.SendRecharge
+import com.tikonsil.tikonsil509admin.domain.model.*
+import com.tikonsil.tikonsil509admin.domain.repository.sendRecharge.SendRechargeRepository
 import com.tikonsil.tikonsil509admin.ui.activity.home.HomeActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
+import com.tikonsil.tikonsil509admin.utils.UtilsView
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 
 /** * Created by ISMOY BELIZAIRE on 02/05/2022. */
-class HistorySalesAdapter(val context: Context): RecyclerView.Adapter<HistorySalesAdapter.MyViewHolder>() {
- private var saleList = mutableListOf<Sales>()
- lateinit var dialogPopUp:Dialog
- fun setsaleListDataHistory(data:MutableList<Sales>) {
-  saleList = data
+class HistorySalesAdapter(private val context: Activity):
+ androidx.recyclerview.widget.ListAdapter<Sales , BaseListViewHolder<*>>(DiffUtilCallback) {
+
+ val bottomSheetDialog by lazy { BottomSheetDialog(context , R.style.BottomSheetDialoTheme) }
+ private val repository: SendRechargeRepository = SendRechargeRepository()
+ private val _responseInnoverit: MutableLiveData<Result<Call<SendRechargeResponse>>> by lazy { MutableLiveData() }
+ val responseInnoverit: LiveData<Result<Call<SendRechargeResponse>>> = _responseInnoverit
+ private object DiffUtilCallback : DiffUtil.ItemCallback<Sales>() {
+  override fun areItemsTheSame(oldItem: Sales , newItem: Sales): Boolean =
+   oldItem.email == newItem.email
+
+  override fun areContentsTheSame(oldItem: Sales , newItem: Sales): Boolean =
+   oldItem == newItem
+
  }
- override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
- val view = ItemFormHistoryInvoicesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-  return MyViewHolder(view)
+ override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): BaseListViewHolder<*> {
+  val itemBinding = ItemFormHistoryInvoicesBinding.inflate(
+   LayoutInflater.from(parent.context) ,
+   parent ,
+   false
+  )
+  return BindViewHolderList(itemBinding)
  }
 
- override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-  val saledata =saleList[position]
-  holder.bidView(saledata,context)
-
-  setOnClickItemListener(holder.itemView,saledata)
+ override fun onBindViewHolder(holder: BaseListViewHolder<*> , position: Int) {
+  when (holder) {
+   is HistorySalesAdapter.BindViewHolderList -> holder.bind(getItem(position) , position)
+  }
  }
 
- private fun setOnClickItemListener(itemView: View , saledata: Sales) {
-  val dialog by lazy { Dialog(context) }
-  itemView.setOnClickListener {
-   dialog.setContentView(R.layout.custom_update_sales_dialog)
-   val window: Window? = dialog.window
-   window?.setLayout(
-    ViewGroup.LayoutParams.MATCH_PARENT,
-    ViewGroup.LayoutParams.WRAP_CONTENT
+ inner class BindViewHolderList(private val binding: ItemFormHistoryInvoicesBinding) :
+  BaseListViewHolder<Sales>(binding.root) {
+  override fun bind(item: Sales , position: Int) = with(binding) {
+   renderView(binding , item)
+
+  }
+ }
+
+
+ private fun renderView(binding: ItemFormHistoryInvoicesBinding , item: Sales) {
+  with(binding) {
+   salesBinding = item
+   if (item.status == 0) {
+    changeStatus.text = status.context.getString(R.string.pending)
+    changeStatus.background = ResourcesCompat.getDrawable(
+     status.context.resources ,
+     R.drawable.background_pending ,
+     null
+    )
+   } else {
+    changeStatus.text = status.context.getString(R.string.Finalized)
+    changeStatus.background = ResourcesCompat.getDrawable(
+     status.context.resources ,
+     R.drawable.background_confirmed ,
+     null
+    )
+   }
+   Glide.with(status.context).load(item.image).into(pictureregisteruseragente)
+   if (item.role == 1) {
+    roleinvoicesagente.text = "Agente"
+   } else {
+    roleinvoicesagente.text = "Master"
+   }
+   if (item.status!=1){
+    container.setOnClickListener(onClickListener(item))
+   }
+  }
+ }
+
+
+ private fun onClickListener(item: Sales): View.OnClickListener {
+  return View.OnClickListener {
+   showBottomSheet(item)
+   UtilsView.setValueSharedPreferences(
+    context ,
+    "keyIdUpdateStatusHistorySales" ,
+    item.idKey
    )
-   dialog.setCancelable(false)
-   if (dialog.window != null) {
-    dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
-   }
-   dialog.show()
-
-   dialog.apply {
-    val button_cancel = findViewById<Button>(R.id.btn_edit_dialog_cancel)
-    val btn_edit_dialog = findViewById<Button>(R.id.btn_edit_dialog)
-    val firstnamedialog = findViewById<TextInputEditText>(R.id.firstnamedialog)
-    val lastnamedialog = findViewById<TextInputEditText>(R.id.lastnamedialog)
-    val passworddialog = findViewById<TextInputEditText>(R.id.passworddialog)
-    val layoutpasswordname = findViewById<TextInputLayout>(R.id.layoutpasswordname)
-    val cardContainer = findViewById<CardView>(R.id.cardContainer)
-    val cardContainerDialog = findViewById<CardView>(R.id.cardViewDialog)
-    //set data in edit text
-     firstnamedialog.setText(saledata.salesPrice)
-     lastnamedialog.setText(saledata.idProduct.toString())
-     passworddialog.setText(saledata.status.toString())
-    button_cancel.setOnClickListener {
-     dialog.dismiss()
-    }
-    if (saledata.idProduct==0){
-     btn_edit_dialog.visibility=View.GONE
-    }
-    btn_edit_dialog.setOnClickListener {
-     if (passworddialog.text.toString().isNotEmpty()){
-      sendRecharge(saledata,passworddialog,cardContainer,cardContainerDialog)
-     }else{
-      layoutpasswordname.helperText ="Ingrese un numero 0 o 1"
-     }
-    }
-   }
-
+   UtilsView.setValueSharedPreferences(context , "TokenUserHistory" , item.token!!)
+   UtilsView.setValueSharedPreferences(
+    context ,
+    "IdProductPendingHistory" ,
+    item.idProduct.toString()
+   )
+   UtilsView.setValueSharedPreferences(context , "IdUserHistoryPending" , item.idUser.toString())
   }
  }
 
+ private fun showBottomSheet(item: Sales) {
+  val bottomViewBinding: BottomSheetUpdateBinding =
+   BottomSheetUpdateBinding.inflate(LayoutInflater.from(context))
+  bottomSheetDialog.setContentView(bottomViewBinding.root)
+  bottomSheetDialog.setCancelable(false)
+  bottomSheetDialog.show()
+  with(bottomViewBinding) {
+   dataBinding = item
+   productIdDialog.setText(item.idProduct.toString())
+   statusDialog.setText(item.status.toString())
+   btnEditDialogCancel.setOnClickListener {
+    bottomSheetDialog.dismiss()
+   }
+   btnEditDialog.setOnClickListener(sendRecharge(item , bottomViewBinding))
+  }
+ }
 
+ @OptIn(DelicateCoroutinesApi::class)
+ @SuppressLint("SuspiciousIndentation")
  private fun sendRecharge(
-  saledata: Sales ,
-  passworddialog: TextInputEditText ,
-  cardContainer: CardView ,
-  cardContainerDialog: CardView
- ) {
-  cardContainerDialog.visibility =View.VISIBLE
-  cardContainer.visibility = View.GONE
-  GlobalScope.launch {
-   val getAuthorizationKey = RetrofitInstance.tikonsilApi.getKeyAuthorization()
-   if (getAuthorizationKey.isSuccessful){
-    val headers = HashMap<String,String>()
-    headers["Authorization"] = getAuthorizationKey.body()!!.key
-    val call = RetrofitInstanceApiRechargeTikonsil509.tikonsilApi.sendProduct(saledata.idProduct.toString(),saledata.phone.toString(),headers)
-    val updateStatus = UpdateStatusSalesProvider()
-    call.enqueue(object: Callback<SendRecharge> {
-     override fun onResponse(call: Call<SendRecharge> , response: Response<SendRecharge>) {
-      if (response.isSuccessful){
-       try {
-        val responseString =response.body().toString()
-        Log.d("responseApi",responseString)
-        if (response.body()?.status =="success"){
-         updateStatus.updateStatus(saledata.idKey,passworddialog.text.toString())
-         context.startActivity(Intent(context.applicationContext,HomeActivity::class.java))
-         Toast.makeText(context , "Has recargado con éxito el numero telefono" , Toast.LENGTH_LONG).show()
-         sendNotificationToOtherDevice(saledata.token)
-         cardContainerDialog.visibility =View.GONE
-         cardContainer.visibility = View.VISIBLE
-        }else{
-         Toast.makeText(context.applicationContext , "No fue posible realizar la recarga pon en contacto con su proveedor" , Toast.LENGTH_SHORT).show()
-         Log.d("responseApi",response.body().toString())
-        }
-       }catch (e: IOException){
-        Toast.makeText(context.applicationContext , "No fue posible realizar la recarga" , Toast.LENGTH_SHORT).show()
-        Log.d("responseApi",e.message.toString())
-        cardContainerDialog.visibility =View.GONE
-        cardContainer.visibility = View.VISIBLE
-       }
-      }else{
-       Log.d("ErrorResponseApi",response.errorBody().toString())
-       Log.d("ErrorResponseApi",response.code().toString())
-       cardContainerDialog.visibility =View.GONE
-       cardContainer.visibility = View.VISIBLE
-       Toast.makeText(context.applicationContext , "No fue posible realizar la recarga" , Toast.LENGTH_SHORT).show()
-      }
-     }
-
-     override fun onFailure(call: Call<SendRecharge> , t: Throwable) {
-      Log.d("ErrorResponseApi",t.toString())
-      cardContainerDialog.visibility =View.GONE
-      cardContainer.visibility = View.VISIBLE
-      Toast.makeText(context.applicationContext , "No fue posible realizar la recarga" , Toast.LENGTH_SHORT).show()
-     }
-
-    })
+  item: Sales ,
+  bottomViewBinding: BottomSheetUpdateBinding
+ ): View.OnClickListener {
+  return View.OnClickListener {
+   val sendProduct = SendRechargeProduct(
+    bottomViewBinding.productIdDialog.text.toString().toInt() ,
+    item.phone!! ,
+    item.email!!
+   )
+   GlobalScope.launch {
+    val response = repository.sendRechargeViaInnoverit(sendProduct)
+    context.runOnUiThread {
+     _responseInnoverit.value = response
+    }
    }
   }
-
-
  }
 
- override fun getItemCount(): Int {
-  return saleList.size
- }
- class MyViewHolder(private val binding: ItemFormHistoryInvoicesBinding) :  RecyclerView.ViewHolder(binding.root) {
-  fun bidView(saledata: Sales , context: Context) {
-   binding.apply {
-    firstnameinvoicesagente.text =saledata.firstname
-    lastnameinvoicesagente.text =saledata.lastname
-    emailinvoicesagente.text =saledata.email
-    saledata.role.let {
-     if (it==1){
-      roleinvoicesagente.text =context.getString(R.string.agent)
-     }else{
-      roleinvoicesagente.text =context.getString(R.string.master)
-     }
-    }
-    telefonoinvoiceagente.text =saledata.phone
-    fechainvoiceagente.text =saledata.date
-    tiporecargainvoiceagente.text =saledata.typerecharge
-    paisinvoiceagente.text = saledata.country
-    subtotalinvoiceagente.text =saledata.subtotal
-    descriptioninvoiceagente.text =saledata.description
-
-    if (saledata.salesPrice == "" && saledata.idProduct==0){
-     changeStatus.text =context.getString(R.string.Finalized)
-     changeStatus.background =context.resources.getDrawable(R.drawable.background_confirmed)
-    }
-    if (saledata.status==0 && saledata.salesPrice!=""){
-     changeStatus.text =context.getString(R.string.pending)
-     changeStatus.background =context.resources.getDrawable(R.drawable.background_pending)
-    }
-    else{
-     changeStatus.text =context.getString(R.string.Finalized)
-     changeStatus.background =context.resources.getDrawable(R.drawable.background_confirmed)
-    }
-    Glide.with(context).load(saledata.image).into(pictureregisteruseragente)
-   }
-  }
-
- }
-
- private fun sendNotificationToOtherDevice(token: String?) {
-  PushNotification(
-   NotificationData(
-    context.getString(R.string.recharge_tikonsil) ,
-    context.getString(R.string.aprobado)) ,
-   token!!
-  ).also { push ->
-   sendNotification(push)
-
-  }
- }
-
- private fun sendNotification(notification: PushNotification) =
-  CoroutineScope(Dispatchers.IO).launch {
-   try {
-    val response = RetrofitInstanceFCM.notificationAPI.postNotification(notification)
-    if (response.isSuccessful) {
-    } else {
-     Toast.makeText(
-      context,
-      "Error: ${response.errorBody().toString()}",
-      Toast.LENGTH_SHORT
-     ).show()
-    }
-   } catch (e: Exception) {
-   }
-  }
 }

@@ -1,20 +1,21 @@
-package com.tikonsil.tikonsil509admin.domain.repository.lastsales
+package com.tikonsil.tikonsil509admin.domain.repository.sales
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.tikonsil.tikonsil509.domain.model.LastSales
+import com.tikonsil.tikonsil509admin.data.remote.provider.ErrorSalesProvider
 import com.tikonsil.tikonsil509admin.data.remote.provider.LastSalesProvider
+import com.tikonsil.tikonsil509admin.domain.model.Sales
 
 /** * Created by ISMOY BELIZAIRE on 28/04/2022. */
 class LastSalesRepository {
 
  private  val salesProvider = LastSalesProvider()
-
  var isExistSnapshot= MutableLiveData<Boolean>()
+
 
  suspend fun getLastSales():LiveData<MutableList<LastSales>>{
   val mutableLiveData =MutableLiveData<MutableList<LastSales>>()

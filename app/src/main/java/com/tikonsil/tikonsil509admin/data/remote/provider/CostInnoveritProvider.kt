@@ -9,17 +9,17 @@ import com.tikonsil.tikonsil509admin.domain.model.IdProducts
 
 class CostInnoveritProvider {
 
-    var mDatabase: DatabaseReference?= FirebaseDatabase.getInstance().reference.child("PriceCountryInnoverit")
+    var mDatabase: DatabaseReference= FirebaseDatabase.getInstance().reference.child("IdProductCountryInnoverit")
 
-    fun create(costInnoverit: CostInnoverit): Task<Void>? {
-        return mDatabase?.push()?.setValue(costInnoverit)
+    fun getListProduct(): DatabaseReference {
+        return mDatabase
     }
 
-    fun getKey(): String? {
-        return mDatabase?.ref?.push()?.key
-    }
-
-    fun getIdKeyAdded(id_product:String): Query? {
-        return mDatabase?.orderByChild("id_product")?.equalTo(id_product)
+    fun updateStatus(idKeyStatus:String,priceReceiver: String?,idProduct:Int,priceSales:String): Task<Void?> {
+        val map: MutableMap<String?, Any?> = HashMap()
+        map["priceReceiver"] = priceReceiver
+        map["idProduct"] = idProduct
+        map["priceSales"] = priceSales
+        return idKeyStatus.let { mDatabase.child(it).updateChildren(map) }
     }
 }

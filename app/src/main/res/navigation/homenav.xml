@@ -31,6 +31,12 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_errorSalesFragment"
+            app:destination="@id/errorSalesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listIdProductInnoveritFragment"
+            app:destination="@id/listIdProductInnoveritFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerUsersFragment"
@@ -92,6 +98,24 @@
         tools:layout="@layout/fragment_register_cost_innoverit" >
         <action
             android:id="@+id/action_registerCostInnoveritFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/errorSalesFragment"
+        android:name="com.tikonsil.tikonsil509admin.ui.fragment.errorSales.ErrorSalesFragment"
+        android:label=""
+        tools:layout="@layout/fragment_error_sales" >
+        <action
+            android:id="@+id/action_errorSalesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listIdProductInnoveritFragment"
+        android:name="com.tikonsil.tikonsil509admin.ui.fragment.listIdProductInnoverit.ListIdProductInnoveritFragment"
+        android:label=""
+        tools:layout="@layout/fragment_list_id_product_innoverit" >
+        <action
+            android:id="@+id/action_listIdProductInnoveritFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 

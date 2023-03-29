@@ -33,7 +33,7 @@ abstract class ValidateSaleHistory<VB : ViewBinding, VM : ViewModel> : Fragment(
  protected lateinit var shimmerFrameLayout: ShimmerFrameLayout
  var recycler: RecyclerView?=null
  lateinit var nodata: ImageView
- private lateinit var historySalesAdapter: HistorySalesAdapter
+ protected lateinit var historySalesAdapter: HistorySalesAdapter
  private lateinit var linearLayoutManager: LinearLayoutManager
 
  override fun onCreateView(
@@ -41,14 +41,11 @@ abstract class ValidateSaleHistory<VB : ViewBinding, VM : ViewModel> : Fragment(
   container: ViewGroup?,
   savedInstanceState: Bundle?): View? {
   binding = getFragmentBinding(inflater, container)
-  val repository = HistorySalesRepository()
-  val factory = HistorySalesViewModelProvider(repository)
   viewmodel = ViewModelProvider(
-   requireActivity(),
-   factory)[HistorySalesViewModel::class.java]
+   requireActivity())[HistorySalesViewModel::class.java]
   mAuthProvider = AuthProvider()
   mConstant = Constant()
-  historySalesAdapter = HistorySalesAdapter(requireContext())
+  historySalesAdapter = HistorySalesAdapter(requireActivity())
   linearLayoutManager = LinearLayoutManager(requireContext())
   shimmerFrameLayout =binding.root.findViewById(R.id.shimmer_history)
   recycler =binding.root.findViewById(R.id.recyclerviewhistory)
@@ -72,7 +69,7 @@ abstract class ValidateSaleHistory<VB : ViewBinding, VM : ViewModel> : Fragment(
      shimmerFrameLayout.stopShimmer()
     recycler?.isGone=false
     shimmerFrameLayout.isGone=true
-    historySalesAdapter.setsaleListDataHistory(it)
+    historySalesAdapter.submitList(it)
    }
 
   })

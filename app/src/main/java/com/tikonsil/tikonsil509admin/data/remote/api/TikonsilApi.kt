@@ -2,7 +2,6 @@ package com.tikonsil.tikonsil509admin.data.remote.api
 
 import com.tikonsil.tikonsil509.domain.model.*
 import com.tikonsil.tikonsil509admin.domain.model.*
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -30,19 +29,30 @@ interface TikonsilApi {
  suspend fun getRegistreredUsers():Response<List<RegisteredUser>>
  @GET("BonusUser.json")
  suspend fun getBounusUser():Response<BonusUser>
- @POST("IdProductCountryInnoverit.json")
- suspend fun registerCostTotal(@Body costInnoverit:CostInnoverit):Response<CostInnoverit>
+ @POST
+ suspend fun registerCostTotal(
+  @Url url: String,
+  @Body costInnoverit:CostInnoverit
+ ):Response<CostInnoverit>
 
- @POST("api/send_recharge")
- @FormUrlEncoded
+ @POST
  fun sendProduct(
-  @Field("id_product") idProduct: String,
-  @Field("destination") destination: String,
-  @HeaderMap authorization:Map<String,String>
- ): Call<SendRecharge>
+  @HeaderMap authorization: Map<String , String>,
+  @Url url: String ,
+  @Body sendRechargeProduct: SendRechargeProduct,
+ ): Call<SendRechargeResponse>
 
- @POST("api/get_balance")
-  fun getBalance(@HeaderMap authorization:Map<String,String>):Call<BalanceResponse>
+ @POST
+ suspend fun postNotification(
+  @Url url: String ,
+  @Body notification: PushNotification,
+  @HeaderMap authorization: Map<String, String>
+ ): Response<PushNotification>
+ @POST
+  fun getBalance(
+  @Url url: String,
+  @HeaderMap authorization:Map<String,String>
+ ):Call<BalanceResponse>
 
  @GET("secretKeyAuthorization.json")
  suspend fun getKeyAuthorization():Response<Authorization>

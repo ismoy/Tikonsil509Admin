@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="90dp">
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/shimmer_history"
+        app:shimmer_auto_start="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+            <include layout="@layout/history_sale_item_shimmer_effect"/>
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewhistory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/nodatahistory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:src="@drawable/nodata" />
+</RelativeLayout>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="costInnoveritBinding"
+            type="com.tikonsil.tikonsil509admin.domain.model.CostInnoverit" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/containerList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Country:"
+                    android:textColor="@color/colorboton" />
+
+                <TextView
+                    android:id="@+id/valueCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{costInnoveritBinding.country}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="HT" />
+
+
+                <TextView
+                    android:id="@+id/formatPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/country"
+                    android:layout_marginBottom="8dp"
+                    android:text="FormatPrice:"
+                    android:textColor="@color/colorboton" />
+
+                <TextView
+                    android:id="@+id/valueFormatPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/valueCountry"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{costInnoveritBinding.formatPrice}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="861 HTG ==> 6.49 USD ==> NATCOM" />
+
+                <TextView
+                    android:id="@+id/idProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/formatPrice"
+                    android:layout_marginBottom="8dp"
+                    android:text="IdProduct:"
+                    android:textColor="@color/colorboton" />
+
+                <TextView
+                    android:id="@+id/valueIdProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/valueFormatPrice"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{costInnoveritBinding.idProduct}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="20272969" />
+
+
+                <TextView
+                    android:id="@+id/nameMoneyCountryReceiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/idProduct"
+                    android:layout_marginBottom="8dp"
+                    android:text="NameMoneyCountryReceiver:"
+                    android:textColor="@color/colorboton" />
+
+                <TextView
+                    android:id="@+id/valueNameMoneyCountryReceiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/valueIdProduct"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{costInnoveritBinding.nameMoneyCountryReceiver}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="HTG" />
+
+                <TextView
+                    android:id="@+id/nameMoneyCountrySale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/nameMoneyCountryReceiver"
+                    android:layout_marginBottom="8dp"
+                    android:text="NameMoneyCountrySale:"
+                    android:textColor="@color/colorboton" />
+
+                <TextView
+                    android:id="@+id/valueNameMoneyCountrySale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/valueNameMoneyCountryReceiver"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{costInnoveritBinding.nameMoneyCountrySale}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="USD" />
+
+
+                <TextView
+                    android:id="@+id/operatorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/nameMoneyCountrySale"
+                    android:layout_marginBottom="8dp"
+                    android:text="OperatorName:"
+                    android:textColor="@color/colorboton" />
+
+                <TextView
+                    android:id="@+id/valueOperatorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/valueNameMoneyCountrySale"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{costInnoveritBinding.operatorName}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="NATCOM" />
+
+                <TextView
+                    android:id="@+id/priceReceiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/operatorName"
+                    android:layout_marginBottom="8dp"
+                    android:text="PriceReceiver:"
+                    android:textColor="@color/colorboton" />
+
+                <TextView
+                    android:id="@+id/valuepriceReceiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/valueOperatorName"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{costInnoveritBinding.priceReceiver}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="861" />
+
+                <TextView
+                    android:id="@+id/priceSales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/priceReceiver"
+                    android:layout_marginBottom="8dp"
+                    android:text="PriceSales:"
+                    android:textColor="@color/colorboton" />
+
+                <TextView
+                    android:id="@+id/valuepriceSales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/valuepriceReceiver"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{costInnoveritBinding.priceSales}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="19.1" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

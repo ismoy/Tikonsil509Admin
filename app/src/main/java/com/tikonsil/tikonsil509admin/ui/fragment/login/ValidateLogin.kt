@@ -125,7 +125,7 @@ abstract class ValidateLogin<VM:ViewModel,VB:ViewBinding>:Fragment() {
      findViewById<TextInputLayout>(R.id.layoutpasswordlogin).helperText =getString(R.string.error_longitudepassword)
     }else->{
     findViewById<TextInputLayout>(R.id.layoutpasswordlogin).helperText=""
-    getUser()
+    Login(findViewById<TextInputEditText>(R.id.emaillogin).text.toString(),findViewById<TextInputEditText>(R.id.passwordlogin).text.toString())
 
    }
    }
@@ -142,7 +142,6 @@ abstract class ValidateLogin<VM:ViewModel,VB:ViewBinding>:Fragment() {
          Toast.makeText(requireContext() , "No tienes permiso para ingresar en la App" , Toast.LENGTH_SHORT).show()
         }else{
          binding.root.apply {
-          Login(findViewById<TextInputEditText>(R.id.emaillogin).text.toString(),findViewById<TextInputEditText>(R.id.passwordlogin).text.toString())
          }
         }
       }

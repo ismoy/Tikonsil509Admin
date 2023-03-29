@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.tikonsil.tikonsil509admin.databinding.FragmentHomeBinding
 import com.tikonsil.tikonsil509admin.presentation.home.UserViewModel
+import com.tikonsil.tikonsil509admin.utils.UtilsView
 
 
 class HomeFragment : HomeValidate<FragmentHomeBinding, UserViewModel>() {
@@ -36,5 +37,9 @@ class HomeFragment : HomeValidate<FragmentHomeBinding, UserViewModel>() {
     override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?) =FragmentHomeBinding.inflate(inflater,container,false)
     override fun getViewModel() = UserViewModel::class.java
 
+    override fun onResume() {
+        super.onResume()
+        UtilsView.clearSharedPreferences(requireContext(),"sharedPreferences")
+    }
 
 }

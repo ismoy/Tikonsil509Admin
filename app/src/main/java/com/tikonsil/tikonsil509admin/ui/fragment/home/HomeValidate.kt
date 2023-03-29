@@ -2,7 +2,6 @@ package com.tikonsil.tikonsil509admin.ui.fragment.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.core.view.isGone
@@ -17,12 +16,14 @@ import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.LastSaleAdapter
-import com.tikonsil.tikonsil509admin.data.remote.api.RetrofitInstanceApiRechargeTikonsil509
 import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.data.remote.provider.TokenProvider
+import com.tikonsil.tikonsil509admin.data.remote.provider.firebaseApi.FirebaseApi
+import com.tikonsil.tikonsil509admin.data.remote.retrofitInstance.Headers
+import com.tikonsil.tikonsil509admin.data.remote.retrofitInstance.RetrofitInstance
 import com.tikonsil.tikonsil509admin.domain.model.BalanceResponse
 import com.tikonsil.tikonsil509admin.domain.repository.home.UsersRepository
-import com.tikonsil.tikonsil509admin.domain.repository.lastsales.LastSalesRepository
+import com.tikonsil.tikonsil509admin.domain.repository.sales.LastSalesRepository
 import com.tikonsil.tikonsil509admin.domain.repository.totalnotification.NotificationCountRepository
 import com.tikonsil.tikonsil509admin.domain.repository.totalsales.TotalSalesRepository
 import com.tikonsil.tikonsil509admin.domain.repository.totaluser.TotalUserRepository
@@ -36,8 +37,8 @@ import com.tikonsil.tikonsil509admin.presentation.totalsales.TotalSalesViewModel
 import com.tikonsil.tikonsil509admin.presentation.totalsales.TotalSalesViewModelFactory
 import com.tikonsil.tikonsil509admin.presentation.totaluser.TotalUserViewModel
 import com.tikonsil.tikonsil509admin.presentation.totaluser.TotalUserViewModelFactory
-import com.tikonsil.tikonsil509admin.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -124,7 +125,6 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
     usernamewel!!.isVisible = true
     binding.root.findViewById<CircleImageView>(R.id.image).isVisible = true
     binding.root.findViewById<RelativeLayout>(R.id.relativebalance).isGone = false
-    binding.root.findViewById<ScrollView>(R.id.scrollviewcard).isVisible = true
 
 
 
@@ -138,34 +138,25 @@ abstract class HomeValidate<VB:ViewBinding,VM:ViewModel>:Fragment() {
 
 
   fun getBalance(){
-   viewmodel.getAuthorizationKey()
-   viewmodel.responseAuthorizationKey.observe(viewLifecycleOwner, Observer {
-    if (it.isSuccessful){
-     val headers = HashMap<String,String>()
-     headers["Authorization"] = it.body()!!.key
-     val responses = RetrofitInstanceApiRechargeTikonsil509.tikonsilApi.getBalance(headers)
-     responses.enqueue(object :Callback<BalanceResponse>{
-      override fun onResponse(call: Call<BalanceResponse> , response: Response<BalanceResponse>) {
-       if (response.isSuccessful){
-        val success = response.body()?.success
-        val balance = response.body()?.balance
-        totalBalance?.text =balance.toString()
-       }else{
-        totalBalance?.text ="No tienes permiso por favor comunicate con Innoverit el Error es: ${response.code()}"
-       }
-       Log.i("ResponseInnoverit",response.toString())
-       Log.i("ResponseInnoverit",response.message().toString())
-       Log.i("ResponseInnoverit",response.code().toString())
+   lifecycleScope.launch {
+    val _tikonsilApi = RetrofitInstance(FirebaseApi.getFSApis().base_url_tikonsil).tikonsilApi
+    _tikonsilApi.getBalance(FirebaseApi.getFSApis().end_point_getBalance,Headers.getHeaderTikonsil509()).enqueue(object :Callback<BalanceResponse>{
+     override fun onResponse(call: Call<BalanceResponse> , response: Response<BalanceResponse>) {
+      if (response.isSuccessful){
+       val success = response.body()?.success
+       val balance = response.body()?.balance
+       totalBalance?.text =balance.toString()
+      }else{
+       totalBalance?.text ="No tienes permiso por favor comunicate con Innoverit el Error es: ${response.code()}"
       }
 
-      override fun onFailure(call: Call<BalanceResponse> , t: Throwable) {
-       Log.d("valorBalanceError",t.message.toString())
-      }
+     }
 
-     })
+     override fun onFailure(call: Call<BalanceResponse> , t: Throwable) {
+     }
 
-    }
-   })
+    })
+   }
 
 
  }

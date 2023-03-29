@@ -69,7 +69,7 @@ class RegisterCostInnoveritFragment : Fragment() {
         binding.apply {
             if (buttonpaises.selectedCountryNameCode.toString().isNotEmpty() && operatorName.text.toString().isNotEmpty() && saleprice.text.toString().isNotEmpty() && codeproduct.text.toString().isNotEmpty() && monyey.text.toString().isNotEmpty()){
                val  formatSales = "${salekliyan.text.toString()} ${monyey.text.toString().toUpperCase()} ==> ${saleprice.text.toString()} USD ==> ${operatorName.text.toString().toUpperCase()}"
-                val saved =CostInnoverit(salekliyan.text.toString(),operatorName.text.toString().toUpperCase(),saleprice.text.toString(),monyey.text.toString().toUpperCase(),"USD",codeproduct.text.toString(),countrySelected!!,formatSales)
+                val saved =CostInnoverit(salekliyan.text.toString(),operatorName.text.toString().toUpperCase(),saleprice.text.toString(),monyey.text.toString().toUpperCase(),"USD",codeproduct.text.toString(),countrySelected!!,formatSales,"")
                 viewModel.registerPriceCost(saved)
                 viewModel.responsePriceCost.observe(viewLifecycleOwner, Observer { response->
                     if (response.isSuccessful){

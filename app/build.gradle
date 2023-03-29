@@ -36,6 +36,7 @@ android {
     }
     buildFeatures{
         viewBinding true
+        dataBinding true
     }
 }
 
@@ -72,6 +73,7 @@ dependencies {
     //Retrofit2
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7"
     //Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$ext_nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$ext_nav_version"
