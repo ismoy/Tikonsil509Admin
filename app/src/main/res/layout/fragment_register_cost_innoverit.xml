@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.RegisterCostInnoveritFragment">
+    tools:context=".ui.fragment.registerCost.RegisterCostInnoveritFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
             app:ccp_showFullName="true"
             app:ccp_showPhoneCode="false"
             app:ccp_showNameCode="true"
-            app:ccp_autoDetectCountry="false"
+            app:ccp_autoDetectCountry="true"
             app:ccp_autoDetectLanguage="true"
             app:ccp_countryAutoDetectionPref="NETWORK_SIM_LOCALE"
             android:layout_marginStart="32dp"
@@ -196,11 +196,10 @@
         android:id="@+id/btnSend"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="90dp"
-        android:text="@string/register"
-        app:layout_constraintStart_toStartOf="parent"
-         />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

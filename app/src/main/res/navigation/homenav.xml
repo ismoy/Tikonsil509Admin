@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerUsersFragment"
-        android:name="com.tikonsil.tikonsil509admin.ui.fragment.registered_users.Registered_UsersFragment"
+        android:name="com.tikonsil.tikonsil509admin.ui.fragment.registered_users.RegisteredUsersFragment"
         android:label="@string/Registeredusers"
         tools:layout="@layout/fragment_registered_users" >
         <action
@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerCostInnoveritFragment"
-        android:name="com.tikonsil.tikonsil509admin.ui.fragment.RegisterCostInnoveritFragment"
+        android:name="com.tikonsil.tikonsil509admin.ui.fragment.registerCost.RegisterCostInnoveritFragment"
         android:label="Registrar Costos"
         tools:layout="@layout/fragment_register_cost_innoverit" >
         <action

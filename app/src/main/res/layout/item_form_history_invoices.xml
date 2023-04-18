@@ -6,7 +6,7 @@
     <data>
      <variable
          name="salesBinding"
-         type="com.tikonsil.tikonsil509admin.domain.model.Sales" />
+         type="com.tikonsil.tikonsil509admin.data.local.entity.SalesEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="costInnoveritBinding"
-            type="com.tikonsil.tikonsil509admin.domain.model.CostInnoverit" />
+            type="com.tikonsil.tikonsil509admin.data.local.entity.CostInnoveritEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,7 +96,7 @@
                     android:layout_below="@id/valueFormatPrice"
                     android:layout_alignParentEnd="true"
                     android:layout_marginBottom="8dp"
-                    android:text="@{costInnoveritBinding.idProduct}"
+                    android:text="@{costInnoveritBinding.idProduct.toString()}"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     tools:text="20272969" />

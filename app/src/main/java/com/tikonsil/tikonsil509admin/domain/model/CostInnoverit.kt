@@ -1,13 +1,17 @@
 package com.tikonsil.tikonsil509admin.domain.model
 
+
 data class CostInnoverit(
-    val priceReceiver:String,
-    val operatorName:String,
-    val priceSales:String,
-    val nameMoneyCountryReceiver:String,
-    val nameMoneyCountrySale:String,
-    val idProduct:String,
-    val country:String,
-    val formatPrice:String,
-    val idKey:String
-)
+    val priceReceiver:String?=null,
+    val operatorName:String?=null,
+    val priceSales:String?=null,
+    val nameMoneyCountryReceiver:String?=null,
+    val nameMoneyCountrySale:String?=null,
+    val idProduct:String?=null,
+    val country:String?=null,
+    val formatPrice:String?=null,
+    var idKey:String?=null
+) {
+    constructor():this(null,null,null,null,
+    null,null,null,null,"")
+}

@@ -2,14 +2,10 @@ package com.tikonsil.tikonsil509admin.data.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
@@ -18,40 +14,40 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.viewHolder.BaseListViewHolder
-import com.tikonsil.tikonsil509admin.databinding.BottomSheetUpdateBinding
-import com.tikonsil.tikonsil509admin.databinding.ItemFormHistoryInvoicesBinding
-import com.tikonsil.tikonsil509admin.domain.model.Sales
+import com.tikonsil.tikonsil509admin.data.local.entity.SalesErrorEntity
+import com.tikonsil.tikonsil509admin.databinding.BottomSheetUpdateSalesErrorBinding
+import com.tikonsil.tikonsil509admin.databinding.ItemFormHistorySalesErrorBinding
 import com.tikonsil.tikonsil509admin.domain.model.SendRechargeProduct
 import com.tikonsil.tikonsil509admin.domain.model.SendRechargeResponse
 import com.tikonsil.tikonsil509admin.domain.repository.sendRecharge.SendRechargeRepository
-import com.tikonsil.tikonsil509admin.presentation.historysales.HistorySalesViewModel
 import com.tikonsil.tikonsil509admin.utils.UtilsView
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
+import javax.inject.Inject
 
 /** * Created by ISMOY BELIZAIRE on 02/05/2022. */
 class ErrorSalesAdapter(private val context: Activity) :
-    ListAdapter<Sales , BaseListViewHolder<*>>(DiffUtilCallback) {
+    ListAdapter<SalesErrorEntity , BaseListViewHolder<*>>(DiffUtilCallback) {
 
     val bottomSheetDialog by lazy { BottomSheetDialog(context , R.style.BottomSheetDialoTheme) }
-    private val repository: SendRechargeRepository = SendRechargeRepository()
     private val _responseInnoverit: MutableLiveData<Result<Call<SendRechargeResponse>>> by lazy { MutableLiveData() }
     val responseInnoverit: LiveData<Result<Call<SendRechargeResponse>>> = _responseInnoverit
-
-    private object DiffUtilCallback : DiffUtil.ItemCallback<Sales>() {
-        override fun areItemsTheSame(oldItem: Sales , newItem: Sales): Boolean =
+    @Inject
+    lateinit var  repository: SendRechargeRepository
+    private object DiffUtilCallback : DiffUtil.ItemCallback<SalesErrorEntity>() {
+        override fun areItemsTheSame(oldItem: SalesErrorEntity , newItem: SalesErrorEntity): Boolean =
             oldItem.email == newItem.email
 
-        override fun areContentsTheSame(oldItem: Sales , newItem: Sales): Boolean =
-            oldItem == newItem
+        override fun areContentsTheSame(oldItem: SalesErrorEntity , newItem: SalesErrorEntity): Boolean =
+            oldItem.email == newItem.email
 
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): BaseListViewHolder<*> {
-        val itemBinding = ItemFormHistoryInvoicesBinding.inflate(
+        val itemBinding = ItemFormHistorySalesErrorBinding.inflate(
             LayoutInflater.from(parent.context) ,
             parent ,
             false
@@ -65,15 +61,14 @@ class ErrorSalesAdapter(private val context: Activity) :
         }
     }
 
-    inner class BindViewHolderList(private val binding: ItemFormHistoryInvoicesBinding) :
-        BaseListViewHolder<Sales>(binding.root) {
-        override fun bind(item: Sales , position: Int) = with(binding) {
+    inner class BindViewHolderList(private val binding: ItemFormHistorySalesErrorBinding) :
+        BaseListViewHolder<SalesErrorEntity>(binding.root) {
+        override fun bind(item: SalesErrorEntity , position: Int) {
             renderView(binding , item)
-
         }
     }
 
-    private fun renderView(binding: ItemFormHistoryInvoicesBinding , item: Sales) {
+    private fun renderView(binding: ItemFormHistorySalesErrorBinding , item: SalesErrorEntity) {
         with(binding) {
             salesBinding = item
             if (item.status == 0) {
@@ -104,7 +99,7 @@ class ErrorSalesAdapter(private val context: Activity) :
         }
     }
 
-    private fun onClickListener(item: Sales): View.OnClickListener {
+    private fun onClickListener(item: SalesErrorEntity): View.OnClickListener {
         return View.OnClickListener {
             showBottomSheet(item)
             UtilsView.setValueSharedPreferences(
@@ -122,9 +117,9 @@ class ErrorSalesAdapter(private val context: Activity) :
         }
     }
 
-    private fun showBottomSheet(item: Sales) {
-        val bottomViewBinding: BottomSheetUpdateBinding =
-            BottomSheetUpdateBinding.inflate(LayoutInflater.from(context))
+    private fun showBottomSheet(item: SalesErrorEntity) {
+        val bottomViewBinding: BottomSheetUpdateSalesErrorBinding =
+            BottomSheetUpdateSalesErrorBinding.inflate(LayoutInflater.from(context))
         bottomSheetDialog.setContentView(bottomViewBinding.root)
         bottomSheetDialog.setCancelable(false)
         bottomSheetDialog.show()
@@ -142,12 +137,12 @@ class ErrorSalesAdapter(private val context: Activity) :
     @OptIn(DelicateCoroutinesApi::class)
     @SuppressLint("SuspiciousIndentation")
     private fun sendRecharge(
-        item: Sales ,
-        bottomViewBinding: BottomSheetUpdateBinding
+        item: SalesErrorEntity,
+        bottomViewBinding: BottomSheetUpdateSalesErrorBinding
     ): View.OnClickListener {
         return View.OnClickListener {
             val sendProduct = SendRechargeProduct(
-                bottomViewBinding.productIdDialog.text.toString().toInt() ,
+                bottomViewBinding.productIdDialog.text.toString() ,
                 item.phone!! ,
                 item.email!!
             )

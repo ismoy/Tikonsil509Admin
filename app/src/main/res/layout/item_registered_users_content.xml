@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-   >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -25,18 +25,18 @@
             android:layout_marginEnd="20dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:id="@+id/tvtx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
                     android:text="@string/Firstname"
+                    android:layout_alignParentStart="true"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
 
@@ -44,27 +44,28 @@
                     android:id="@+id/firstnameregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
+                    android:layout_alignParentEnd="true"
                     android:maxLines="1"
+                    android:gravity="end"
+                    android:layout_toRightOf="@+id/tvtx"
                     android:text="@string/belizaire"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/tvlast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
                     android:text="@string/LastName"
+                    android:layout_alignParentStart="true"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
 
@@ -72,28 +73,28 @@
                     android:id="@+id/lastnameregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
-                    android:maxLines="1"
+                    android:gravity="end"
+                    android:layout_toRightOf="@+id/tvlast"
+                    android:layout_alignParentEnd="true"
                     android:text="@string/ismoy"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/txtemal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
                     android:text="@string/email"
+                    android:layout_alignParentStart="true"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
 
@@ -101,26 +102,27 @@
                     android:id="@+id/emailregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
+                    android:gravity="end"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@+id/txtemal"
                     android:text="@string/tikonsil509_com_cl"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/txtpass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
                     android:text="@string/password"
+                    android:layout_alignParentStart="true"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
 
@@ -128,28 +130,27 @@
                     android:id="@+id/passwordregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
+                    android:layout_alignParentEnd="true"
                     android:maxLines="1"
                     android:text="@string/secure"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/txtestado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
                     android:text="@string/estado"
+                    android:layout_alignParentStart="true"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
 
@@ -157,28 +158,29 @@
                     android:id="@+id/estadoregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
+                    android:layout_alignParentEnd="true"
                     android:maxLines="1"
-                    android:text=""
+                    tools:text="Activo"
+                    tools:textColor="@color/colorverde"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/txtphone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
                     android:text="@string/telefono"
+                    android:layout_alignParentStart="true"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
 
@@ -186,27 +188,26 @@
                     android:id="@+id/telefonoregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
                     android:maxLines="1"
+                    android:layout_alignParentEnd="true"
                     android:text="@string/_56973030630"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/txtrole"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_alignParentStart="true"
                     android:text="@string/role"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
@@ -215,26 +216,25 @@
                     android:id="@+id/cargoregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="15dp"
                     android:maxLines="1"
-                    android:text=""
+                    tools:text="Agent"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/txttopup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_alignParentStart="true"
                     android:text="@string/topup"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
@@ -243,27 +243,26 @@
                     android:id="@+id/topupregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="15dp"
                     android:maxLines="1"
-                    android:text=""
+                    tools:text="HTG 500"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/txtmoncash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_alignParentStart="true"
                     android:text="@string/moncash"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
@@ -272,26 +271,25 @@
                     android:id="@+id/moncashregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="15dp"
                     android:maxLines="1"
-                    android:text=""
+                    tools:text="HTG 200"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/txtnatcash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_alignParentStart="true"
                     android:text="@string/natcash"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
@@ -300,27 +298,27 @@
                     android:id="@+id/natcashregisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="15dp"
                     android:maxLines="1"
-                    android:text=""
+                    tools:text="HTG 300"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:id="@+id/txtlapoula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_alignParentStart="true"
                     android:text="@string/lapoula"
                     android:textColor="@color/colorboton"
                     android:textSize="15sp" />
@@ -329,14 +327,13 @@
                     android:id="@+id/lapoularegisteruser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="15dp"
                     android:maxLines="1"
-                    android:text=""
+                    tools:text="HTG 400"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
 
         </LinearLayout>

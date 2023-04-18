@@ -2,60 +2,42 @@ package com.tikonsil.tikonsil509admin.data.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Dialog
-import android.content.Context
-import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.Button
-import android.widget.ListAdapter
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.viewHolder.BaseListViewHolder
-import com.tikonsil.tikonsil509admin.data.remote.provider.UpdateStatusSalesProvider
-import com.tikonsil.tikonsil509admin.data.remote.provider.firebaseApi.FirebaseApi
-import com.tikonsil.tikonsil509admin.data.remote.retrofitInstance.Headers
-import com.tikonsil.tikonsil509admin.data.remote.retrofitInstance.RetrofitInstance
+import com.tikonsil.tikonsil509admin.data.local.entity.SalesEntity
 import com.tikonsil.tikonsil509admin.databinding.BottomSheetUpdateBinding
 import com.tikonsil.tikonsil509admin.databinding.ItemFormHistoryInvoicesBinding
 import com.tikonsil.tikonsil509admin.domain.model.*
 import com.tikonsil.tikonsil509admin.domain.repository.sendRecharge.SendRechargeRepository
-import com.tikonsil.tikonsil509admin.ui.activity.home.HomeActivity
 import com.tikonsil.tikonsil509admin.utils.UtilsView
 import kotlinx.coroutines.*
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.IOException
+import javax.inject.Inject
 
 /** * Created by ISMOY BELIZAIRE on 02/05/2022. */
-class HistorySalesAdapter(private val context: Activity):
- androidx.recyclerview.widget.ListAdapter<Sales , BaseListViewHolder<*>>(DiffUtilCallback) {
+class HistorySalesAdapter @Inject constructor(private val repository: SendRechargeRepository,private val context: Activity):
+ androidx.recyclerview.widget.ListAdapter<SalesEntity , BaseListViewHolder<*>>(DiffUtilCallback) {
 
  val bottomSheetDialog by lazy { BottomSheetDialog(context , R.style.BottomSheetDialoTheme) }
- private val repository: SendRechargeRepository = SendRechargeRepository()
  private val _responseInnoverit: MutableLiveData<Result<Call<SendRechargeResponse>>> by lazy { MutableLiveData() }
  val responseInnoverit: LiveData<Result<Call<SendRechargeResponse>>> = _responseInnoverit
- private object DiffUtilCallback : DiffUtil.ItemCallback<Sales>() {
-  override fun areItemsTheSame(oldItem: Sales , newItem: Sales): Boolean =
+
+ private object DiffUtilCallback : DiffUtil.ItemCallback<SalesEntity>() {
+  override fun areItemsTheSame(oldItem: SalesEntity , newItem: SalesEntity): Boolean =
    oldItem.email == newItem.email
 
-  override fun areContentsTheSame(oldItem: Sales , newItem: Sales): Boolean =
-   oldItem == newItem
+  override fun areContentsTheSame(oldItem: SalesEntity , newItem: SalesEntity): Boolean =
+   oldItem.email == newItem.email
 
  }
  override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): BaseListViewHolder<*> {
@@ -74,15 +56,15 @@ class HistorySalesAdapter(private val context: Activity):
  }
 
  inner class BindViewHolderList(private val binding: ItemFormHistoryInvoicesBinding) :
-  BaseListViewHolder<Sales>(binding.root) {
-  override fun bind(item: Sales , position: Int) = with(binding) {
+  BaseListViewHolder<SalesEntity>(binding.root) {
+  override fun bind(item: SalesEntity , position: Int) = with(binding) {
    renderView(binding , item)
 
   }
  }
 
 
- private fun renderView(binding: ItemFormHistoryInvoicesBinding , item: Sales) {
+ private fun renderView(binding: ItemFormHistoryInvoicesBinding , item: SalesEntity) {
   with(binding) {
    salesBinding = item
    if (item.status == 0) {
@@ -113,7 +95,7 @@ class HistorySalesAdapter(private val context: Activity):
  }
 
 
- private fun onClickListener(item: Sales): View.OnClickListener {
+ private fun onClickListener(item: SalesEntity): View.OnClickListener {
   return View.OnClickListener {
    showBottomSheet(item)
    UtilsView.setValueSharedPreferences(
@@ -131,7 +113,7 @@ class HistorySalesAdapter(private val context: Activity):
   }
  }
 
- private fun showBottomSheet(item: Sales) {
+ private fun showBottomSheet(item: SalesEntity) {
   val bottomViewBinding: BottomSheetUpdateBinding =
    BottomSheetUpdateBinding.inflate(LayoutInflater.from(context))
   bottomSheetDialog.setContentView(bottomViewBinding.root)
@@ -139,6 +121,7 @@ class HistorySalesAdapter(private val context: Activity):
   bottomSheetDialog.show()
   with(bottomViewBinding) {
    dataBinding = item
+   Log.e("idProduct",item.toString())
    productIdDialog.setText(item.idProduct.toString())
    statusDialog.setText(item.status.toString())
    btnEditDialogCancel.setOnClickListener {
@@ -151,12 +134,12 @@ class HistorySalesAdapter(private val context: Activity):
  @OptIn(DelicateCoroutinesApi::class)
  @SuppressLint("SuspiciousIndentation")
  private fun sendRecharge(
-  item: Sales ,
+  item: SalesEntity ,
   bottomViewBinding: BottomSheetUpdateBinding
  ): View.OnClickListener {
   return View.OnClickListener {
    val sendProduct = SendRechargeProduct(
-    bottomViewBinding.productIdDialog.text.toString().toInt() ,
+    bottomViewBinding.productIdDialog.text.toString() ,
     item.phone!! ,
     item.email!!
    )

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="dataBinding"
-           type="com.tikonsil.tikonsil509admin.domain.model.CostInnoverit" />
+           type="com.tikonsil.tikonsil509admin.data.local.entity.CostInnoveritEntity" />
 
     </data>
 
@@ -99,7 +99,7 @@
                     android:id="@+id/productIdDialog"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{dataBinding.idProduct}"
+                    android:text="@{dataBinding.idProduct.toString()}"
                     tools:ignore="SpeakableTextPresentCheck">
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>

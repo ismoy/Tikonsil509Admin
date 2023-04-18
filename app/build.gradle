@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-android'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -110,5 +111,7 @@ dependencies {
     //libreria para comprimir imagenes
     implementation 'id.zelory:compressor:2.1.1'
     implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
+    implementation 'androidx.activity:activity:1.6.1'
+
 
 }

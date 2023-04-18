@@ -3,7 +3,6 @@ package com.tikonsil.tikonsil509admin.data.remote.provider
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.tikonsil.tikonsil509admin.domain.model.RegisteredUser
 import com.tikonsil.tikonsil509admin.domain.model.Users
 import java.util.HashMap
 
@@ -12,7 +11,7 @@ class UpdateUserProvider {
  var mDatabase:DatabaseReference?=FirebaseDatabase.getInstance().reference.child("Clients")
 
  var mDatabaseUpdate:DatabaseReference?=FirebaseDatabase.getInstance().reference.child("Admin")
- fun update(user: RegisteredUser?): Task<Void>? {
+ fun update(user: Users?): Task<Void>? {
   val map: MutableMap<String?, Any?> = HashMap()
   map.apply {
    put("firstname", user?.firstname)

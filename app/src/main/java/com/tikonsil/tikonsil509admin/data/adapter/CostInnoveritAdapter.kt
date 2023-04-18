@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.DiffUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.viewHolder.BaseListViewHolder
+import com.tikonsil.tikonsil509admin.data.local.entity.CostInnoveritEntity
 import com.tikonsil.tikonsil509admin.data.remote.provider.CostInnoveritProvider
 import com.tikonsil.tikonsil509admin.databinding.BottomSheetUpdateListIdproductBinding
 import com.tikonsil.tikonsil509admin.databinding.ItemListIdproductInnoverritBinding
 import com.tikonsil.tikonsil509admin.domain.model.CostInnoverit
 
 class CostInnoveritAdapter(private val context: Context) :
-    androidx.recyclerview.widget.ListAdapter<CostInnoverit , BaseListViewHolder<*>>(DiffUtilCallback) {
+    androidx.recyclerview.widget.ListAdapter<CostInnoveritEntity , BaseListViewHolder<*>>(DiffUtilCallback) {
     private val bottomSheetDialog by lazy {
         BottomSheetDialog(
             context ,
@@ -24,11 +25,11 @@ class CostInnoveritAdapter(private val context: Context) :
     }
     private val costInnoveritProvider by lazy { CostInnoveritProvider() }
 
-    private object DiffUtilCallback : DiffUtil.ItemCallback<CostInnoverit>() {
-        override fun areItemsTheSame(oldItem: CostInnoverit , newItem: CostInnoverit): Boolean =
+    private object DiffUtilCallback : DiffUtil.ItemCallback<CostInnoveritEntity>() {
+        override fun areItemsTheSame(oldItem: CostInnoveritEntity , newItem: CostInnoveritEntity): Boolean =
             oldItem.idProduct == newItem.idProduct
 
-        override fun areContentsTheSame(oldItem: CostInnoverit , newItem: CostInnoverit): Boolean =
+        override fun areContentsTheSame(oldItem: CostInnoveritEntity , newItem: CostInnoveritEntity): Boolean =
             oldItem == newItem
 
     }
@@ -49,28 +50,28 @@ class CostInnoveritAdapter(private val context: Context) :
     }
 
     inner class BindViewHolderList(private val binding: ItemListIdproductInnoverritBinding) :
-        BaseListViewHolder<CostInnoverit>(binding.root) {
-        override fun bind(item: CostInnoverit , position: Int) = with(binding) {
+        BaseListViewHolder<CostInnoveritEntity>(binding.root) {
+        override fun bind(item: CostInnoveritEntity , position: Int) = with(binding) {
             renderView(binding , item)
 
         }
     }
 
-    private fun renderView(binding: ItemListIdproductInnoverritBinding , item: CostInnoverit) {
+    private fun renderView(binding: ItemListIdproductInnoverritBinding , item: CostInnoveritEntity) {
         with(binding) {
             costInnoveritBinding = item
             containerList.setOnClickListener(onclickListener(item))
         }
     }
 
-    private fun onclickListener(item: CostInnoverit): View.OnClickListener {
+    private fun onclickListener(item: CostInnoveritEntity): View.OnClickListener {
         return View.OnClickListener {
             showBottomSheet(item)
         }
 
     }
 
-    private fun showBottomSheet(item: CostInnoverit) {
+    private fun showBottomSheet(item: CostInnoveritEntity) {
         val bottomViewBinding: BottomSheetUpdateListIdproductBinding =
             BottomSheetUpdateListIdproductBinding.inflate(LayoutInflater.from(context))
         bottomSheetDialog.setContentView(bottomViewBinding.root)
@@ -86,16 +87,16 @@ class CostInnoveritAdapter(private val context: Context) :
     }
 
     private fun updateData(
-        item: CostInnoverit ,
+        item: CostInnoveritEntity ,
         bottomViewBinding: BottomSheetUpdateListIdproductBinding
     ): View.OnClickListener {
         return View.OnClickListener {
             costInnoveritProvider.updateStatus(
-                item.idKey ,
+                item.idKey!! ,
                 bottomViewBinding.priceReceiverDialog.text.toString() ,
                 bottomViewBinding.productIdDialog.text.toString().toInt() ,
-                bottomViewBinding.priceSaleDialog.text.toString()
-            ).addOnCompleteListener {
+                bottomViewBinding.priceSaleDialog.text.toString(),
+                "${bottomViewBinding.priceReceiverDialog.text.toString() } ${ item.nameMoneyCountryReceiver} ==> ${bottomViewBinding.priceSaleDialog.text.toString()} ${item.nameMoneyCountrySale} ==> ${item.operatorName}").addOnCompleteListener {
                if (it.isSuccessful){
                    Toast.makeText(context , "se ha actualizado los datos éxitosamente" , Toast.LENGTH_SHORT).show()
                    bottomSheetDialog.dismiss()

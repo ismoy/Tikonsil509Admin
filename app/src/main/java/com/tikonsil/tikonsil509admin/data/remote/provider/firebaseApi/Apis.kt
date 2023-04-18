@@ -20,7 +20,8 @@ data class Apis(
     val end_point_mercado_pago_payment:String ="",
     val end_point_save_sales_error_innoverit:String = "",
     val end_point_add_product:String = "",
-    val end_point_getBalance:String = ""
+    val end_point_getBalance:String = "",
+    val end_point_list_user:String = ""
 )
 
 data class FCM(

@@ -15,11 +15,12 @@ class CostInnoveritProvider {
         return mDatabase
     }
 
-    fun updateStatus(idKeyStatus:String,priceReceiver: String?,idProduct:Int,priceSales:String): Task<Void?> {
+    fun updateStatus(idKeyStatus:String,priceReceiver: String?,idProduct:Int,priceSales:String,formatPrice:String): Task<Void?> {
         val map: MutableMap<String?, Any?> = HashMap()
         map["priceReceiver"] = priceReceiver
         map["idProduct"] = idProduct
         map["priceSales"] = priceSales
+        map["formatPrice"] = formatPrice
         return idKeyStatus.let { mDatabase.child(it).updateChildren(map) }
     }
 }

@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -18,54 +20,22 @@ import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.domain.repository.login.LoginRepository
 import com.tikonsil.tikonsil509admin.presentation.home.UserViewModel
 import com.tikonsil.tikonsil509admin.presentation.login.LoginViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import de.hdodenhof.circleimageview.CircleImageView
 
 /** * Created by ISMOY BELIZAIRE on 23/04/2022. */
 abstract class BaseActivity<VM : ViewModel, VB : ViewBinding> : AppCompatActivity() {
     protected lateinit var binding: VB
-    protected lateinit var viewmodel: UserViewModel
-    protected lateinit var mAuthProvider: AuthProvider
-
     protected lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = getActivityBinding()
         setContentView(binding.root)
-        val repository = LoginRepository()
-        val factory = LoginViewModelFactory(repository)
-        viewmodel = ViewModelProvider(this, factory)[UserViewModel::class.java]
-        mAuthProvider = AuthProvider()
     }
 
     protected abstract fun getActivityBinding(): VB
     protected abstract fun getViewModel(): Class<VM>
 
-
-    @SuppressLint("SetTextI18n")
-    fun showDataInView() {
-        viewmodel.getOnlyUser(mAuthProvider.getId().toString())
-        viewmodel.ResposeUsers.observe(this, Observer { response ->
-            if (response.isSuccessful) {
-                binding.root.apply {
-                    val headerdrawer = findViewById<NavigationView>(R.id.nav_view)?.getHeaderView(0)
-                    val nameheader = headerdrawer?.findViewById<TextView>(R.id.usernamedrawable)
-                    val image_drawable = headerdrawer!!.findViewById<CircleImageView>(R.id.image_drawable)
-                    response.body()?.apply {
-                        val name = firstname
-                        nameheader?.text = "Hola,\n$name"
-
-                        if (image!=null){
-                            Glide.with(this@BaseActivity).load(image).into(image_drawable)
-                        }
-                    }
-
-                }
-
-            } else {
-                Toast.makeText(this, response.code(), Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 
 }

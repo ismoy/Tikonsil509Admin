@@ -129,7 +129,7 @@
             android:padding="10dp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/layoutpasswordlogin"/>
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,6 +145,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iralregistro" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:elevation="100dp"
+            android:indeterminateDrawable="@drawable/circular_progress_bar"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_login"
+            app:layout_constraintEnd_toEndOf="@+id/btn_login"
+            app:layout_constraintStart_toStartOf="@+id/btn_login"
+            app:layout_constraintTop_toTopOf="@+id/btn_login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

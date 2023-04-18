@@ -13,7 +13,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="wrap_content"
-            android:layout_height="230dp"
+            android:layout_height="130dp"
             android:background="@drawable/login_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,13 +35,12 @@
             android:id="@+id/arrowbackregister"
             android:layout_width="28dp"
             android:layout_height="28dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+
             android:src="@drawable/ic_baseline_arrow_back_ios_24"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintHorizontal_bias="0.121"
             app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.511"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -161,53 +160,46 @@
                 android:layout_height="wrap_content"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/phone1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/layout"
-            app:layout_constraintBottom_toTopOf="@id/layout" />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:padding="10dp"
             android:gravity="center"
-            android:layout_marginTop="30dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutemail">
-            <com.hbb20.CountryCodePicker
+            app:layout_constraintTop_toBottomOf="@id/layoutemail">
+
+            <TextView
                 android:id="@+id/codigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:ccp_showNameCode="true"
-                app:ccp_showFlag="true"
-                app:ccp_autoDetectCountry="true"
-                app:ccp_autoDetectLanguage="true"
-                app:ccp_defaultNameCode="US"
-                app:ccp_areaCodeDetectedCountry="true"
-                app:ccp_showPhoneCode="true"
-                app:ccp_flagBorderColor="@color/colorboton"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="+509"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutphone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="32dp"
-                android:hint="@string/numberdefault"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="0dp"
+                android:layout_marginStart="3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:hint="ingrese el numero telefono "
                 app:helperTextTextColor="@color/design_default_color_error"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toEndOf="@+id/codigo"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phone"
@@ -215,14 +207,13 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_round_phone_24"
                     android:drawablePadding="10dp"
-                    android:maxLength="9"
                     android:inputType="phone"
-                    android:padding="10dp"/>
+                    android:maxLength="10"
+                    android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -288,7 +279,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_registrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -308,6 +299,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutconfirmpassword" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:elevation="100dp"
+            android:indeterminateDrawable="@drawable/circular_progress_bar"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_registrar"
+            app:layout_constraintEnd_toEndOf="@+id/btn_registrar"
+            app:layout_constraintStart_toStartOf="@+id/btn_registrar"
+            app:layout_constraintTop_toTopOf="@+id/btn_registrar" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

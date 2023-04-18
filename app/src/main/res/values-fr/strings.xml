@@ -4,4 +4,6 @@
     <string name="Finalized">Finalisé</string>
     <string name="recharge_tikonsil">RECHARGE TIKONSIL509</string>
     <string name="aprobado">\"Votre demande a été approuvée merci de nous avoir choisi \"</string>
+    <string name="lang_email">fr</string>
+    <string name="verifyaccount">Veuillez vérifier votre compte</string>
 </resources>

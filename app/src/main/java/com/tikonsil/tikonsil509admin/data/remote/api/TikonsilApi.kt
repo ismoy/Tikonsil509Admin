@@ -25,8 +25,10 @@ interface TikonsilApi {
  @GET("CountryPrice.json")
  suspend fun getCountryPrice():Response<CountryPrice>
 
- @GET("Clients/GScaoMbBZ8fbPM1LtAD7frRMUTD3.json")
- suspend fun getRegistreredUsers():Response<List<RegisteredUser>>
+ @GET
+ suspend fun getUsers(
+  @Url url: String
+ ):Response<List<Users>>
  @GET("BonusUser.json")
  suspend fun getBounusUser():Response<BonusUser>
  @POST

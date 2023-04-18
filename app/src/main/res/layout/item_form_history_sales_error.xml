@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="salesBinding"
+            type="com.tikonsil.tikonsil509admin.data.local.entity.SalesErrorEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="0dp"
+        android:id="@+id/container">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:cardCornerRadius="10dp"
+            android:id="@+id/card"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/pictureregisteruseragente"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="top|center"
+                android:clickable="true"
+                android:elevation="3dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/man"
+                android:focusable="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:id="@+id/txtf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/Firstname"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/firstnameinvoicesagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{salesBinding.firstname}"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/LastName"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/txtf"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/lastnameinvoicesagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{salesBinding.lastname}"
+                    android:layout_marginBottom="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/firstnameinvoicesagente"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="Role"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/txty" />
+
+                <TextView
+                    android:id="@+id/roleinvoicesagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Admin"
+                    android:layout_marginBottom="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_below="@+id/lastnameinvoicesagente"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/txte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/email"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:layout_below="@+id/txtr"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/emailinvoicesagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{salesBinding.email}"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/roleinvoicesagente"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Telefono"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/txte"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/telefonoinvoiceagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{salesBinding.phone}"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/emailinvoicesagente"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/g"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/txth"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fechainvoiceagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{salesBinding.date}"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/telefonoinvoiceagente"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/V"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="Tipo Recg"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/g"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tiporecargainvoiceagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{salesBinding.typerecharge}"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/fechainvoiceagente"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/j"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="Pais"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/V"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/paisinvoiceagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Haiti"
+                    android:text="@{salesBinding.country}"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/tiporecargainvoiceagente"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/S"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SubTotal"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:layout_below="@+id/j"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/subtotalinvoiceagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="0"
+                    android:text="@{salesBinding.subtotal}"
+                    android:layout_marginBottom="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_below="@+id/paisinvoiceagente"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="Descripcion"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/S"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/descriptioninvoiceagente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{salesBinding.description}"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_below="@+id/subtotalinvoiceagente"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="Estado"
+                    android:layout_below="@+id/d"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorboton"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/changeStatus"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@+id/descriptioninvoiceagente"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

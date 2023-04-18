@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bottom_sheet_dialog">
+
+    <data>
+        <variable
+            name="dataBinding"
+           type="com.tikonsil.tikonsil509admin.domain.model.CountryPrice" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_collabsed_bottom_sheet"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/update"
+            android:textColor="@color/colorboton"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            android:layout_marginHorizontal="24dp">
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/layout_mon_cash"
+                android:text="@string/moncashpricehaiti"
+                app:layout_constraintBottom_toTopOf="@+id/layout_mon_cash"
+                app:layout_constraintStart_toStartOf="@+id/layout_mon_cash" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_mon_cash"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="44dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:helperTextTextColor="@color/design_default_color_error"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mon_cash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{dataBinding.priceMonCash}"
+                    tools:ignore="SpeakableTextPresentCheck"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/tv_la_pou_la"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/layout_la_pou_la"
+                android:text="@string/lapoulapricehaiti"
+                app:layout_constraintBottom_toTopOf="@+id/layout_la_pou_la"
+                app:layout_constraintStart_toStartOf="@+id/layout_la_pou_la" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_la_pou_la"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="44dp"
+                android:layout_marginTop="30dp"
+                app:helperTextTextColor="@color/design_default_color_error"
+                app:layout_constraintEnd_toEndOf="@+id/layout_mon_cash"
+                app:layout_constraintStart_toStartOf="@+id/layout_mon_cash"
+                app:layout_constraintTop_toBottomOf="@+id/layout_mon_cash">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lapoula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{dataBinding.priceLaPouLa}"
+                    tools:ignore="SpeakableTextPresentCheck"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/tv_nat_cash_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/layout_nat_cash"
+                android:text="@string/natcashpricehaiti"
+                app:layout_constraintBottom_toTopOf="@+id/layout_nat_cash"
+                app:layout_constraintStart_toStartOf="@+id/layout_nat_cash" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_nat_cash"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="44dp"
+                android:layout_marginTop="30dp"
+                app:helperTextTextColor="@color/design_default_color_error"
+                app:layout_constraintEnd_toEndOf="@+id/layout_la_pou_la"
+                app:layout_constraintStart_toStartOf="@+id/layout_la_pou_la"
+                app:layout_constraintTop_toBottomOf="@+id/layout_la_pou_la">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/natcash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{dataBinding.priceNatCash}"
+                    tools:ignore="SpeakableTextPresentCheck"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_edit_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/update"
+                android:textAllCaps="false"
+                app:cornerRadius="4dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn_edit_dialog_cancel"
+                app:layout_constraintTop_toBottomOf="@+id/layout_nat_cash" />
+
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_edit_dialog"
+                app:layout_constraintEnd_toEndOf="@+id/btn_edit_dialog"
+                android:indeterminateDrawable="@drawable/circular_progress_bar"
+                app:layout_constraintStart_toStartOf="@+id/btn_edit_dialog"
+                app:layout_constraintTop_toTopOf="@+id/btn_edit_dialog" />
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_edit_dialog_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/cancel"
+                android:layout_marginBottom="20dp"
+                android:textAllCaps="false"
+                android:theme="@style/BtuttonCancelTheme"
+                app:cornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_edit_dialog"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_nat_cash" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

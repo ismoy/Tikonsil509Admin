@@ -185,6 +185,8 @@
     <string name="Finalized">Finalized</string>
     <string name="recharge_tikonsil">TOPUP TIKONSIL509</string>
     <string name="aprobado">Your request has been approved thank you for choosing us</string>
+    <string name="lang_email">en</string>
+    <string name="verifyaccount">Please verify your account</string>
 
 
 </resources>

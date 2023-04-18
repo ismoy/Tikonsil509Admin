@@ -6,20 +6,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.tikonsil.tikonsil509.domain.model.LastSales
+import com.tikonsil.tikonsil509admin.domain.model.LastSales
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.databinding.ItemLastSaleBinding
+import com.tikonsil.tikonsil509admin.domain.model.Sales
 
 /** * Created by ISMOY BELIZAIRE on 27/04/2022. */
 class LastSaleAdapter(val context: Context): RecyclerView.Adapter<LastSaleAdapter.MyViewHolder>() {
- private var saleList = mutableListOf<LastSales>()
- fun setsaleListData(data:MutableList<LastSales>){
+ private var saleList = mutableListOf<Sales>()
+ fun setsaleListData(data:MutableList<Sales>){
   saleList = data
  }
 
 
- override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastSaleAdapter.MyViewHolder {
- val view = ItemLastSaleBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+ override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+  val view = ItemLastSaleBinding.inflate(LayoutInflater.from(parent.context),parent,false)
   return MyViewHolder(view)
  }
 
@@ -31,71 +32,85 @@ class LastSaleAdapter(val context: Context): RecyclerView.Adapter<LastSaleAdapte
  override fun getItemCount(): Int {
   return if (saleList.size>0)
    saleList.size else{
-    0
+   0
   }
  }
- class MyViewHolder(private val binding:ItemLastSaleBinding) :  RecyclerView.ViewHolder(binding.root) {
-  @SuppressLint("CheckResult", "SetTextI18n")
-  fun bidView(saledata: LastSales, context: Context) {
+ inner class MyViewHolder(private val binding:ItemLastSaleBinding) :  RecyclerView.ViewHolder(binding.root) {
+  @SuppressLint("CheckResult")
+  fun bidView(saledata: Sales, context: Context) {
 
-      binding.apply {
-        when {
-         saledata.typerecharge =="MONCASH" && saledata.codecountry=="HT"->{
-          Glide.with(context).load(R.drawable.haiti).into(imageViewPlaneta)
-          saldoform.text = " HTG "+saledata.subtotal
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= saledata.typerecharge
-         }
-         saledata.typerecharge=="TOPUP" && saledata.codecountry=="BR"->{
-          Glide.with(context).load(R.drawable.brazil).into(imageViewPlaneta)
-          saldoform.text = " BRL "+saledata.subtotal
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= saledata.typerecharge
-         }
-         saledata.typerecharge=="TOPUP" && saledata.codecountry=="HT"->{
-          Glide.with(context).load(R.drawable.haiti).into(imageViewPlaneta)
-          saldoform.text = " HTG "+saledata.subtotal
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= saledata.typerecharge
-         }
-         saledata.typerecharge=="TOPUP" && saledata.codecountry=="PA"->{
-          Glide.with(context).load(R.drawable.panama).into(imageViewPlaneta)
-          saldoform.text = " PAB "+saledata.subtotal
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= saledata.typerecharge
-         }
-         saledata.typerecharge=="TOPUP" && saledata.codecountry=="DO"->{
-          Glide.with(context).load(R.drawable.republicadominicana).into(imageViewPlaneta)
-          saldoform.text = " DOP "+saledata.subtotal
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= saledata.typerecharge
-         }
-         saledata.typerecharge=="TOPUP" && saledata.codecountry=="CU"->{
-          Glide.with(context).load(R.drawable.cuba).into(imageViewPlaneta)
-          saldoform.text =" CUP "+ saledata.subtotal
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= saledata.typerecharge
-         }
-         saledata.typerecharge=="TOPUP" && saledata.codecountry=="MX"->{
-          Glide.with(context).load(R.drawable.mexico).into(imageViewPlaneta)
-          saldoform.text =" MXN "+ saledata.subtotal
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= saledata.typerecharge
-         }
-         saledata.codecountry=="HT" && saledata.typerecharge==""->{
-          saldoform.text =" $ "+ saledata.salePrice
-          Glide.with(context).load(R.drawable.haiti).into(imageViewPlaneta)
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= "TOPUP"
-         }
-         else->{
-          saldoform.text =" $ "+ saledata.subtotal
-          dateform.text =saledata.dates
-          nameTypeRecharge.text= "TOPUP"
-          Glide.with(context).load(R.drawable.planeta).into(imageViewPlaneta)
-         }
-        }
-      }
+   binding.apply {
+    when {
+     saledata.typerecharge =="MONCASH" && saledata.codecountry=="HT"->{
+      Glide.with(context).load(R.drawable.haitiflag).into(imageViewPlaneta)
+      saldoform.text = " HTG "+saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+     }
+     saledata.typerecharge =="NATCASH" && saledata.codecountry=="HT"->{
+      Glide.with(context).load(R.drawable.haitiflag).into(imageViewPlaneta)
+      saldoform.text = " HTG "+saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+     }
+     saledata.typerecharge =="LAPOULA" && saledata.codecountry=="HT"->{
+      Glide.with(context).load(R.drawable.haitiflag).into(imageViewPlaneta)
+      saldoform.text = " HTG "+saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+     }
+     saledata.typerecharge=="TOPUP" && saledata.codecountry=="BR"->{
+      Glide.with(context).load(R.drawable.brasil).into(imageViewPlaneta)
+      saldoform.text = saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+     }
+     saledata.typerecharge=="TOPUP" && saledata.codecountry=="HT"->{
+      Glide.with(context).load(R.drawable.haitiflag).into(imageViewPlaneta)
+      saldoform.text = saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+     }
+     saledata.typerecharge=="TOPUP" && saledata.codecountry=="PA"->{
+      Glide.with(context).load(R.drawable.panama).into(imageViewPlaneta)
+      saldoform.text = saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+     }
+     saledata.typerecharge=="TOPUP" && saledata.codecountry=="DO"->{
+      Glide.with(context).load(R.drawable.dominicana).into(imageViewPlaneta)
+      saldoform.text = saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+     }
+     saledata.typerecharge=="TOPUP" && saledata.codecountry=="CU"->{
+      Glide.with(context).load(R.drawable.cuba).into(imageViewPlaneta)
+      saldoform.text =saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+     }
+     saledata.typerecharge=="TOPUP" && saledata.codecountry=="MX"->{
+      Glide.with(context).load(R.drawable.mexico).into(imageViewPlaneta)
+      saldoform.text = saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+
+     }
+     saledata.typerecharge=="TOPUP" && saledata.codecountry=="US"->{
+      Glide.with(context).load(R.drawable.usa).into(imageViewPlaneta)
+      saldoform.text = saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= saledata.typerecharge
+
+     }
+     else->{
+      saldoform.text =saledata.subtotal
+      dateform.text =saledata.date
+      nameTypeRecharge.text= "TOPUP"
+      Glide.with(context).load(R.drawable.earth).into(imageViewPlaneta)
+     }
+    }
+   }
   }
 
  }

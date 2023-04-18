@@ -2,17 +2,22 @@ package com.tikonsil.tikonsil509admin.ui.fragment.errorSales
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tikonsil.tikonsil509admin.R
 import com.tikonsil.tikonsil509admin.data.adapter.ErrorSalesAdapter
+import com.tikonsil.tikonsil509admin.data.mapper.toDomain
+import com.tikonsil.tikonsil509admin.data.mapper.toSalesErrorDomain
 import com.tikonsil.tikonsil509admin.data.remote.provider.AuthProvider
 import com.tikonsil.tikonsil509admin.data.remote.provider.UpdateStatusSalesProvider
 import com.tikonsil.tikonsil509admin.data.remote.provider.firebaseApi.FirebaseApi
@@ -24,54 +29,70 @@ import com.tikonsil.tikonsil509admin.domain.model.PushNotification
 import com.tikonsil.tikonsil509admin.domain.model.SendRechargeResponse
 import com.tikonsil.tikonsil509admin.presentation.historysales.HistorySalesViewModel
 import com.tikonsil.tikonsil509admin.ui.activity.home.HomeActivity
+import com.tikonsil.tikonsil509admin.ui.fragment.base.BaseFragment
 import com.tikonsil.tikonsil509admin.utils.UtilsView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class ErrorSalesFragment : Fragment() {
-    private lateinit var binding: FragmentErrorSalesBinding
-    private val errorSalesAdapter by lazy { ErrorSalesAdapter(requireActivity()) }
-    private lateinit var linearLayoutManager: LinearLayoutManager
-    private val viewModel by lazy { ViewModelProvider(requireActivity())[HistorySalesViewModel::class.java] }
-    private val updateStatus by lazy { UpdateStatusSalesProvider() }
+@AndroidEntryPoint
+class ErrorSalesFragment :BaseFragment<FragmentErrorSalesBinding,HistorySalesViewModel>(),
+    SearchView.OnQueryTextListener {
     private var idProductPending:String?=null
-    private lateinit var mAuthProvider: AuthProvider
-    override fun onCreateView(
-        inflater: LayoutInflater , container: ViewGroup? ,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentErrorSalesBinding.inflate(inflater , container , false)
-        return binding.root
-    }
+    private val historySalesViewModel:HistorySalesViewModel by viewModels()
+    @Inject
+    lateinit var updateStatus:UpdateStatusSalesProvider
+
 
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
         val bottomNavigationView =
             activity!!.findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         bottomNavigationView.visibility = View.GONE
-        linearLayoutManager = LinearLayoutManager(requireContext())
-        mAuthProvider = AuthProvider()
+        recyclerView = binding.recyclerviewhistoryerror
+        shimmerFrameLayout = binding.shimmerError
+        nodata = binding.nodataerror
+        cardSearchView = binding.cardSearchViewError
+        searView = binding.searchViewError
+        searView.setOnQueryTextListener(this)
+        updateStatus = UpdateStatusSalesProvider()
         setupRecyclerview()
         observerViewModel()
 
     }
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentErrorSalesBinding=FragmentErrorSalesBinding.inflate(inflater,container,false)
+
+    override fun getViewModel() = HistorySalesViewModel::class.java
+
+
 
     private fun observerViewModel() {
-        viewModel.getErrorSales.observe(viewLifecycleOwner) {
+        historySalesViewModel.getErrorSales.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
-                with(binding) {
-                    shimmerHistory.stopShimmer()
-                    recyclerviewhistory.isGone = false
-                    shimmerHistory.isGone = true
-                }
-                errorSalesAdapter.submitList(it)
+                val salesErrorEntityItemList = it.map { entity -> entity.toSalesErrorDomain() }
+                historySalesErrorAdapter.submitList(salesErrorEntityItemList)
+                historySalesViewModel.insertSalesError(salesErrorEntityItemList)
             }
         }
-        errorSalesAdapter.responseInnoverit.observe(viewLifecycleOwner) { result ->
+
+        historySalesViewModel.readSalesError.observe(viewLifecycleOwner){listHistory->
+            shimmerFrameLayout.stopShimmer()
+            recyclerView.isGone = false
+            shimmerFrameLayout.isGone = true
+            historySalesErrorAdapter.submitList(listHistory)
+
+        }
+
+
+        historySalesErrorAdapter.responseInnoverit.observe(viewLifecycleOwner) { result ->
             idProductPending =UtilsView.getValueSharedPreferences(requireActivity(),"IdProductPending")
             when {
                     result.isSuccess -> {
@@ -91,7 +112,7 @@ class ErrorSalesFragment : Fragment() {
                                     requireActivity().finish()
                                     updateStatus.updateStatusErrorSales(UtilsView.getValueSharedPreferences(requireActivity(),"keyIdUpdateStatusErrorSales"),"1")
                                     updatePendingSales()
-                                    errorSalesAdapter.bottomSheetDialog.dismiss()
+                                    historySalesErrorAdapter.bottomSheetDialog.dismiss()
                                 } else {
                                     Toast.makeText(
                                         requireContext() ,
@@ -111,6 +132,15 @@ class ErrorSalesFragment : Fragment() {
                     }
             }
         }
+        historySalesViewModel.isExistSnapshotError.observe(viewLifecycleOwner){exist->
+            if (exist){
+                nodata.visibility =View.VISIBLE
+                shimmerFrameLayout.stopShimmer()
+                shimmerFrameLayout.isGone = true
+                cardSearchView.isGone = true
+            }
+
+        }
     }
 
     private fun updatePendingSales() {
@@ -118,17 +148,15 @@ class ErrorSalesFragment : Fragment() {
     }
 
     private fun setupRecyclerview() {
-        with(binding) {
-            recyclerviewhistory.adapter = errorSalesAdapter
-            recyclerviewhistory.layoutManager = linearLayoutManager
-            recyclerviewhistory.hasFixedSize()
-        }
+            recyclerView.adapter = historySalesErrorAdapter
+            recyclerView.layoutManager = linearLayoutManager
+            recyclerView.hasFixedSize()
 
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.historyErrorSales()
+        historySalesViewModel.historyErrorSales()
     }
 
     private fun sendNotificationToOtherDevice(token: String?) {
@@ -164,4 +192,23 @@ class ErrorSalesFragment : Fragment() {
             } catch (e: Exception) {
             }
         }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query!=null){
+            searchDatabase(query)
+        }
+        return true
+    }
+    private fun searchDatabase(query: String) {
+        val searchQuery = "%$query%"
+        historySalesViewModel.searchSalesError(searchQuery).observe(viewLifecycleOwner){list->
+            list.let {
+                historySalesErrorAdapter.submitList(it)
+            }
+        }
+    }
 }

@@ -16,4 +16,5 @@ class RegisterRepository(private var application: Application) {
         val _tikonsilApi = RetrofitInstance(FirebaseApi.getFSApis().base_url_firebase_instance).tikonsilApi
         return _tikonsilApi.registerClient(uiduser,users)
     }
+
 }
